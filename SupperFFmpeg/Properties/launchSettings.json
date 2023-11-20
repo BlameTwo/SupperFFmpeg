@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "SupperFFmpeg (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "SupperFFmpeg (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
