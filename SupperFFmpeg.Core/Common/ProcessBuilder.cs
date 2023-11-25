@@ -1,28 +1,28 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
+using SupperFFmpeg.Core.Models.Enums;
 
 namespace SupperFFmpeg.Core.Common;
 
-internal static class ProcessBuilder
+public static class ProcessBuilder
 {
-    public static Process CreateProcess(string fileName, List<string> argument)
+    public static Process CreateProcess(FFmpegFile fileName, List<string> argument)
     {
         Process pos = new();
         var argumentStr = string.Join(" ", argument);
         ProcessStartInfo info =
             new()
             {
-                FileName = fileName,
+                FileName = CoreConfig.Instance.FFMEFolder + (fileName == FFmpegFile.FFmpeg ? "\\ffmpeg.exe" : fileName == FFmpegFile.FFplay ? "\\ffplay.exe" : "\\ffprobe.exe"),
                 Arguments = " " + argumentStr,
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden,
                 WorkingDirectory = CoreConfig.Instance.FFMEFolder,
-                StandardErrorEncoding = System.Text.Encoding.UTF8,
-                StandardInputEncoding = System.Text.Encoding.UTF8,
-                StandardOutputEncoding = System.Text.Encoding.UTF8,
-                UseShellExecute = true
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
             };
+        pos.StartInfo = info;
         return pos;
     }
 }

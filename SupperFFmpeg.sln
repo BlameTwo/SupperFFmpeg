@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperFFmpeg", "SupperFFmpeg\SupperFFmpeg.csproj", "{9F805818-445C-42D7-ABDB-26191F873921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupperFFmpeg", "SupperFFmpeg\SupperFFmpeg.csproj", "{9F805818-445C-42D7-ABDB-26191F873921}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupperFFmpeg.Core", "SupperFFmpeg.Core\SupperFFmpeg.Core.csproj", "{239E5B0A-D5F5-4E28-A391-4DA098270F7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SupperFFmpeg.Core", "SupperFFmpeg.Core\SupperFFmpeg.Core.csproj", "{239E5B0A-D5F5-4E28-A391-4DA098270F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Test", "Core.Test\Core.Test.csproj", "{50314B60-BBEF-49A2-86CF-C171BE6DE95F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,22 @@ Global
 		{239E5B0A-D5F5-4E28-A391-4DA098270F7F}.Release|x64.Build.0 = Release|Any CPU
 		{239E5B0A-D5F5-4E28-A391-4DA098270F7F}.Release|x86.ActiveCfg = Release|Any CPU
 		{239E5B0A-D5F5-4E28-A391-4DA098270F7F}.Release|x86.Build.0 = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|x64.Build.0 = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Debug|x86.Build.0 = Debug|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|ARM64.Build.0 = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|x64.ActiveCfg = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|x64.Build.0 = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|x86.ActiveCfg = Release|Any CPU
+		{50314B60-BBEF-49A2-86CF-C171BE6DE95F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
