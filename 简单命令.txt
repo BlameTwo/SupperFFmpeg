@@ -1,0 +1,1 @@
+./ffmpeg -i "Auto.mkv" -vcodec copy -acodec copy -progress - output.mp4
