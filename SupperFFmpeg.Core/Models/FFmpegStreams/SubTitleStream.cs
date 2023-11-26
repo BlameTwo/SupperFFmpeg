@@ -1,4 +1,4 @@
-﻿using SupperFFmpeg.Core.Contracts;
+﻿using SupperFFmpeg.Core.Contracts.Models;
 using System.Text.Json.Serialization;
 
 namespace SupperFFmpeg.Core.Models.FFmpegStreams;

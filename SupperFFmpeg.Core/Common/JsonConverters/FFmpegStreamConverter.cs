@@ -1,4 +1,4 @@
-﻿using SupperFFmpeg.Core.Contracts;
+﻿using SupperFFmpeg.Core.Contracts.Models;
 using SupperFFmpeg.Core.Models.FFmpegStreams;
 using System;
 using System.Buffers;

@@ -5,15 +5,26 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:app="using:SupperFFmpeg"
     xmlns:converter="using:CommunityToolkit.WinUI.Converters"
-    xmlns:local="using:SupperFFmpeg">
+    xmlns:local="using:SupperFFmpeg"
+    xmlns:selector="using:SupperFFmpeg.Selectors"
+    xmlns:uiconverter="using:SupperFFmpeg.Converters">
     <app:FFmpegApplication.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/TitleBar.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/Button.xaml" />
+                <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/DropFileCard.xaml" />
+                <ResourceDictionary Source="ms-appx:///Views/UISelectors/FFmpegStreamDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+            <uiconverter:LongToTimeSpanConverter x:Key="LongToTimeSpanConverter" />
+            <uiconverter:FrameConverter x:Key="FrameConverter" />
+            <selector:FFmpegStreamSelector
+                x:Key="FFmpegStreamSelector"
+                AudioTemplate="{StaticResource AudioStream}"
+                SubTitle="{StaticResource SubtitleStream}"
+                VideoTempalte="{StaticResource VideoStream}" />
         </ResourceDictionary>
     </app:FFmpegApplication.Resources>
 </app:FFmpegApplication>

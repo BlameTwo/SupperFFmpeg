@@ -1,1 +1,3 @@
 ./ffmpeg -i "Auto.mkv" -vcodec copy -acodec copy -progress - output.mp4
+
+ffmpeg -i input.mp4 -map 0:index -c copy video.格式

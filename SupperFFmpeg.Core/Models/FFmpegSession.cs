@@ -1,5 +1,5 @@
 ﻿using SupperFFmpeg.Core.Common.JsonConverters;
-using SupperFFmpeg.Core.Contracts;
+using SupperFFmpeg.Core.Contracts.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;

@@ -11,4 +11,10 @@
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.230913002" />
 	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\DropFileCard.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
 </Project>

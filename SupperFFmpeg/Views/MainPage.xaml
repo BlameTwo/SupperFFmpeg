@@ -88,6 +88,22 @@
                     </Button>
                 </StackPanel>
             </ui:TitleBar.Header>
+            <ui:TitleBar.Footer>
+                <Button
+                    Margin="0,7,0,0"
+                    VerticalAlignment="Center"
+                    Style="{ThemeResource TransparentButtonStyle}">
+                    <FontIcon
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="15"
+                        Glyph="&#xE8BD;" />
+                </Button>
+            </ui:TitleBar.Footer>
+            <AutoSuggestBox
+                Width="300"
+                VerticalAlignment="Center"
+                PlaceholderText="搜索功能"
+                QueryIcon="Find" />
         </ui:TitleBar>
         <NavigationView
             x:Name="navigationView"
@@ -120,7 +136,7 @@
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
             </NavigationView.MenuItems>
-            <Frame x:Name="frameBase" />
+            <Frame x:Name="frameBase" Margin="25" />
         </NavigationView>
     </Grid>
 </Page>

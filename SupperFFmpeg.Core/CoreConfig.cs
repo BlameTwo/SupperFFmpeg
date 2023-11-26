@@ -21,6 +21,15 @@ public class FFmpegCoreInstalce
     /// </summary>
     public string FFMEFolder { get; set; }
 
+    /// <summary>
+    /// 缓存文件个数
+    /// </summary>
+    public long Caches { get; set; }
+
+    /// <summary>
+    /// 缓存文件夹存档
+    /// </summary>
+    public string CacheFolder { get; set; }
 
     public override string ToString()
     {

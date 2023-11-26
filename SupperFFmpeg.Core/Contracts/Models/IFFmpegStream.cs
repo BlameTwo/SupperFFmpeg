@@ -2,7 +2,7 @@
 using SupperFFmpeg.Core.Models.FFmpegStreams;
 using System.Text.Json.Serialization;
 
-namespace SupperFFmpeg.Core.Contracts;
+namespace SupperFFmpeg.Core.Contracts.Models;
 
 /// <summary>
 /// 解析视频流的模型接口
