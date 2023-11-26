@@ -1,10 +1,11 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using SupperFFmpeg.Core.Contracts.Models;
+using SupperFFmpeg.ViewModels.ItemViewModels;
 
 namespace SupperFFmpeg.Selectors;
 
-public class FFmpegStreamSelector:DataTemplateSelector
+public class FFmpegStreamSelector: DataTemplateSelector
 {
     public DataTemplate VideoTempalte { get; set; }
 
@@ -12,11 +13,11 @@ public class FFmpegStreamSelector:DataTemplateSelector
 
     public DataTemplate SubTitle { get; set; }
 
-    protected override DataTemplate SelectTemplateCore(object item)
+    protected override DataTemplate SelectTemplateCore(object item, DependencyObject container)
     {
-        if(item is IFFmpegStream  stream)
+        if (item is FFmpegStreamItemViewModel stream)
         {
-            switch (stream.CodecType)
+            switch (stream.DataBase.CodecType)
             {
                 case "audio":
                     return AudioTemplate;

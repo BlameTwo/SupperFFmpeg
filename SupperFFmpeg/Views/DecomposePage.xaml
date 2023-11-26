@@ -25,9 +25,9 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" Text="{x:Bind ViewModel.FFmpegSession.Format.Filename, Mode=OneWay}" />
-                <Grid Grid.Row="2" Margin="0,15,0,0">
-                    <ListView ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
-                </Grid>
+                <ScrollView Grid.Row="2" Margin="0,15,0,0">
+                    <ItemsControl ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
+                </ScrollView>
                 <TextBlock
                     Grid.Row="1"
                     Margin="0,15,0,0"
@@ -55,10 +55,7 @@
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                 BorderThickness="1"
                 CornerRadius="5">
-                <TextBlock
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Text="操控面板" />
+                <Button Command="{x:Bind ViewModel.OutputSelectCommand, Mode=OneWay}" Content="导出选中" />
             </Grid>
         </Grid>
         <Grid

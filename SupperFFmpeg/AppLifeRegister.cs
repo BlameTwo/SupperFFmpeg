@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using SupperFFmpeg.Contracts;
 using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.ViewModels;
+using SupperFFmpeg.ViewModels.ItemViewModels;
 using SupperFFmpeg.Views;
 using System.Threading.Tasks;
 
@@ -22,22 +23,26 @@ public static class AppLifeRegister
             service.AddSingleton<INavigationViewService, NavigationViewService>();
             service.AddTransient<IPageService, PageService>();
             service.AddSingleton<IWindowManagerService, WindowManagerService>();
+            service.AddSingleton<IDataFactory, DataFactory>();
             service.AddTransient<MainPage>();
             service.AddTransient<MainViewModel>(); 
             service.AddTransient<DecomposePage>();
             service.AddTransient<DecomposeViewModel>();
             service.AddTransient<WorkSpacePage>();
             service.AddTransient<WorkSpaceViewModel>();
+
+            #region ItemViewModel
+            service.AddTransient<FFmpegStreamItemViewModel>();
+            #endregion
         }).Build();
         await Host.StartAsync();
     }
 
     public static T GetService<T>()
-        where T : class
     {
         if (Host.Services.GetService(typeof(T)) is not T service)
         {
-            return null;
+            return default(T);
         }
         return service;
     }

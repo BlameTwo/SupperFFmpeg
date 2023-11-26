@@ -4,74 +4,125 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:model="using:SupperFFmpeg.Core.Models.FFmpegStreams">
     <DataTemplate x:Name="VideoStream">
-        <Grid>
+        <Grid
+            Margin="0,5,0,0"
+            Padding="10,5"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE714;" />
-            <TextBlock Grid.Column="1" Margin="5,0,0,0">
-                <Run Text="{Binding CodecType, Mode=OneWay}" />
+            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
+            <FontIcon
+                Grid.Column="1"
+                FontFamily="Segoe Fluent Icons"
+                Glyph="&#xE714;" />
+            <TextBlock
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center">
+                <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
-                <Run Text="{Binding CodecName, Mode=OneWay}" />
+                <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="2">
+            <TextBlock Grid.Column="3" VerticalAlignment="Center">
                 <Run Text="帧率" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding RFrameRate, Mode=OneWay, Converter={StaticResource FrameConverter}}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.RFrameRate, Mode=OneWay, Converter={StaticResource FrameConverter}}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" HorizontalAlignment="Right">
+            <TextBlock
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
                 <Run Text="纵横比：" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DisplayAspectRatio, Mode=OneWay}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.DisplayAspectRatio, Mode=OneWay}" />
             </TextBlock>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="AudioStream">
-        <Grid>
+        <Grid
+            Margin="0,5,0,0"
+            Padding="10,5"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8D6;" />
-            <TextBlock Grid.Column="1" Margin="5,0,0,0">
-                <Run Text="{Binding CodecType, Mode=OneWay}" />
+            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
+            <FontIcon
+                Grid.Column="1"
+                FontFamily="Segoe Fluent Icons"
+                Glyph="&#xE8D6;" />
+            <TextBlock
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center">
+                <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
-                <Run Text="{Binding CodecName, Mode=OneWay}" />
+                <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="2">
+            <TextBlock Grid.Column="3" VerticalAlignment="Center">
                 <Run Text="采样率" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding SampleRate, Mode=OneWay}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.SampleRate, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" HorizontalAlignment="Right">
+            <TextBlock
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
                 <Run Text="时间基准：" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding TimeBase, Mode=OneWay}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.TimeBase, Mode=OneWay}" />
             </TextBlock>
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SubtitleStream">
-        <Grid>
+        <Grid
+            Margin="0,5,0,0"
+            Padding="10,5"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1"
+            CornerRadius="5">
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xED1E;" />
-            <TextBlock Grid.Column="1" Margin="5,0,0,0">
-                <Run Text="{Binding CodecType, Mode=OneWay}" />
+            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
+            <FontIcon
+                Grid.Column="1"
+                FontFamily="Segoe Fluent Icons"
+                Glyph="&#xED1E;" />
+            <TextBlock
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center">
+                <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
-                <Run Text="{Binding CodecName, Mode=OneWay}" />
+                <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="2">
+            <TextBlock Grid.Column="3" VerticalAlignment="Center">
                 <Run Text="语言" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding Tags.Language, Mode=OneWay}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.Tags.Language, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" HorizontalAlignment="Right">
+            <TextBlock
+                Grid.Column="4"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
                 <Run Text="时间基准：" />
-                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding TimeBase, Mode=OneWay}" />
+                <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.TimeBase, Mode=OneWay}" />
             </TextBlock>
         </Grid>
     </DataTemplate>
