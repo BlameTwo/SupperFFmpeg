@@ -92,6 +92,7 @@
                 <Button
                     Margin="0,7,0,0"
                     VerticalAlignment="Center"
+                    Click="Button_Click"
                     Style="{ThemeResource TransparentButtonStyle}">
                     <FontIcon
                         FontFamily="Segoe Fluent Icons"
@@ -138,5 +139,31 @@
             </NavigationView.MenuItems>
             <Frame x:Name="frameBase" Margin="25" />
         </NavigationView>
+        <SplitView
+            x:Name="splitView"
+            Grid.Row="1"
+            CompactPaneLength="48"
+            DisplayMode="Overlay"
+            OpenPaneLength="300"
+            PaneBackground="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}"
+            PanePlacement="Right">
+            <SplitView.Pane>
+                <NavigationView
+                    IsBackButtonVisible="Collapsed"
+                    IsPaneToggleButtonVisible="False"
+                    IsSettingsVisible="False"
+                    PaneDisplayMode="Top">
+                    <NavigationView.MenuItems>
+                        <NavigationViewItem Content="任务列表" />
+                        <NavigationViewItem Content="消息" />
+                    </NavigationView.MenuItems>
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontSize="25"
+                        Text="无消息" />
+                </NavigationView>
+            </SplitView.Pane>
+        </SplitView>
     </Grid>
 </Page>

@@ -26,4 +26,9 @@ public sealed partial class MainPage : Page
     {
         navigationView.IsPaneOpen = !navigationView.IsPaneOpen;
     }
+
+    private void Button_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        splitView.IsPaneOpen = !splitView.IsPaneOpen;
+    }
 }
