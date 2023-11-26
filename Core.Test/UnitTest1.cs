@@ -1,5 +1,7 @@
 using SupperFFmpeg.Core;
+using SupperFFmpeg.Core.Models;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace Core.Test
 {
@@ -9,12 +11,12 @@ namespace Core.Test
         [TestMethod]
         public void TestMethod1()
         {
-            Debug.WriteLine("²ÝÄàÂí");
             CoreConfig.Instance.FFMEFolder = "C:\\Users\\30140\\Desktop\\bin";
-
+            //-show_streams
+            //-show_format
             var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
                 SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFprobe,
-                new() { "-show_streams \"C:\\Users\\30140\\Desktop\\bin\\Auto.mkv\"",{ "-of json"} }
+                new() { "-show_streams -show_format \"C:\\Users\\30140\\Desktop\\bin\\Auto.mkv\"", { "-of json"} }
             );
             process.Start();
             var text ="";
@@ -26,6 +28,7 @@ namespace Core.Test
                 text += output;
                 Debug.WriteLine(output);
             }
+            FFmpegSession session = JsonSerializer.Deserialize<FFmpegSession>(text)!;
             process.WaitForExit();
         }
     }

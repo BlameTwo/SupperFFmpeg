@@ -1,23 +1,29 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Media;
+using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.Views;
 
 namespace SupperFFmpeg;
 
-public partial class App : Application
+public partial class App : FFmpegApplication
 {
     public App()
     {
         this.InitializeComponent();
     }
 
-    protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+    protected async override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
     {
-        m_window = new Window();
-        m_window.SystemBackdrop = new MicaBackdrop();
-        m_window.Content = new MainPage();
-        m_window.Activate();
+        await AppLifeRegister.InitService();
+        Window win = new();
+        if(win.Content == null)
+        {
+            win.Content = AppLifeRegister.GetService<MainPage>();
+            win.SystemBackdrop = new MicaBackdrop();
+        }
+        var winservice = AppLifeRegister.GetService<IWindowManagerService>();
+        winservice.Window = win;
+        win.Activate();
+        this.MainWindow = win;
     }
-
-    private Window m_window;
 }
