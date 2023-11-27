@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:SupperFFmpeg.UI.Controls"
     mc:Ignorable="d">
-    <Grid>
+    <Grid AllowDrop="True">
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
             <ColumnDefinition />
@@ -17,7 +17,11 @@
             <RowDefinition />
             <RowDefinition Height="150" />
         </Grid.RowDefinitions>
-        <ui:DropFileCard Title="无内容" AllowDrop="True">
+        <ui:DropFileCard
+            Title="无内容"
+            DragEnter="Page_DragEnter"
+            DragOver="Page_DragOver"
+            Drop="Page_Drop">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />

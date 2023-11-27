@@ -68,6 +68,18 @@ public partial class DropFileCard:Control
 
     private void InitUI()
     {
+        _mainGrid.AllowDrop = true;
+        _mainGrid.Drop += _mainGrid_Drop;
+        _mainGrid.DragEnter += _mainGrid_DragOver;
+    }
+
+    private void _mainGrid_DragOver(object sender, DragEventArgs e)
+    {
+        e.AcceptedOperation = Windows.ApplicationModel.DataTransfer.DataPackageOperation.Link;
+    }
+
+    private void _mainGrid_Drop(object sender, DragEventArgs e)
+    {
 
     }
 }

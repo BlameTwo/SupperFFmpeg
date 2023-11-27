@@ -11,7 +11,7 @@ public sealed class FileStreamToolkit
     /// <summary>
     /// 获得一个视频文件的详细信息
     /// </summary>
-    /// <param name="path">地址</param>
+    /// <param name="path">文件地址</param>
     /// <returns></returns>
     public async Task<FFmpegSession> GetFileInfo(string path)
     {
