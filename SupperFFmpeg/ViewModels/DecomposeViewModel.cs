@@ -45,9 +45,26 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
     }
 
     [RelayCommand]
-    void OutputSelect()
+    async Task OutputSelect()
     {
-        var list = this.FFmpegStreams.Where((x)=>x.IsSelect);
+        var list = this.FFmpegStreams.Where((x) => x.IsSelect).ToArray();
+        bool result = await FileStreamToolkit.OutputStream(this.FFmpegSession,list[0].DataBase);
+    }
+
+    [ObservableProperty]
+    string _FilePath;
+
+    async partial  void OnFilePathChanged(string value)
+    {
+        if (value != null)
+        {
+            FFmpegStreams.Clear();
+            this.FFmpegSession = await FileStreamToolkit.GetFileInfo(value);
+            foreach (var item in FFmpegSession.Streams)
+            {
+                this.FFmpegStreams.Add(DataFactory.SetData<FFmpegStreamItemViewModel, IFFmpegStream>(item));
+            }
+        }
     }
 
     [ObservableProperty]

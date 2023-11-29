@@ -22,12 +22,47 @@
                             StrokeDashArray="4.4"
                             StrokeThickness="2" />
                         <ContentPresenter
+                            x:Name="PARA_Content"
                             Grid.Row="1"
                             Margin="{TemplateBinding Padding}"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <Grid
+                            x:Name="PARA_SelectContent"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <FontIcon
+                                FontFamily="Segoe Fluent Icons"
+                                FontSize="25"
+                                Glyph="&#xE8E5;" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="0,15,0,0"
+                                FontSize="15"
+                                Text="{TemplateBinding FileOpenHeaderText}" />
+                        </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="DefaultOpenFileGroup">
+                                <VisualState x:Name="OpenFileState">
+                                    <VisualState.Setters>
+                                        <Setter Target="PARA_Content.Visibility" Value="Visible" />
+                                        <Setter Target="PARA_SelectContent.Visibility" Value="Collapsed" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                                <VisualState x:Name="ClearFileState">
+                                    <VisualState.Setters>
+                                        <Setter Target="PARA_Content.Visibility" Value="Collapsed" />
+                                        <Setter Target="PARA_SelectContent.Visibility" Value="Visible" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
