@@ -42,7 +42,7 @@ public sealed class FileStreamToolkit
                 "-i " + dataBase.Format.Filename,
                 " -map " + $"0:{stream.Index}",
                 " -c " + "copy",
-                " D:\\test.srt",
+                " D:\\test.mp4",
             };
             var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
                 SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFmpeg,
@@ -77,7 +77,6 @@ public sealed class FileStreamToolkit
             process.BeginErrorReadLine();
             process.WaitForExit();
         });
-        //ffmpeg -i input.mp4 -map 0:index -c copy video.格式
         return true;
     }
 }

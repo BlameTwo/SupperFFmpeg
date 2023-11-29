@@ -4,7 +4,7 @@ using Microsoft.UI.Xaml.Navigation;
 
 namespace SupperFFmpeg.Contracts.Services;
 
-public class NavigationService : INavigationService
+public sealed class NavigationService : INavigationService
 {
     public NavigationService(IPageService pageService)
     {

@@ -4,7 +4,7 @@ using Windows.Services.Maps;
 
 namespace SupperFFmpeg.Contracts;
 
-public class DataFactory : IDataFactory
+public sealed class DataFactory : IDataFactory
 {
     public T SetData<T, Value>(Value data)
         where T : IItemData<Value>

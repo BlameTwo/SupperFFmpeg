@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 namespace SupperFFmpeg.Contracts;
 
-public class PageService : IPageService
+public sealed class PageService : IPageService
 {
     private readonly Dictionary<string, Tuple<Type, Type>> _pageValues;
 

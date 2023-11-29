@@ -3,7 +3,7 @@ using SupperFFmpeg.Contracts.Services;
 
 namespace SupperFFmpeg.Contracts;
 
-public class WindowManagerService : IWindowManagerService
+public sealed class WindowManagerService : IWindowManagerService
 {
     private Window window;
 
