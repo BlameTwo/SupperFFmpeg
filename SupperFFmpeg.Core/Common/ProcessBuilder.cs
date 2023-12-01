@@ -25,4 +25,21 @@ public static class ProcessBuilder
         pos.StartInfo = info;
         return pos;
     }
+
+    public static ProcessStartInfo CreateProcessInfo(FFmpegFile fileName,List<string> argument)
+    {
+        var argumentStr = string.Join(" ", argument);
+        ProcessStartInfo info =
+            new()
+            {
+                FileName = CoreConfig.Instance.FFMEFolder + (fileName == FFmpegFile.FFmpeg ? "\\ffmpeg.exe" : fileName == FFmpegFile.FFplay ? "\\ffplay.exe" : "\\ffprobe.exe"),
+                Arguments = " " + argumentStr,
+                CreateNoWindow = true,
+                WindowStyle = ProcessWindowStyle.Hidden,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false
+            };
+        return info;
+    }
 }
