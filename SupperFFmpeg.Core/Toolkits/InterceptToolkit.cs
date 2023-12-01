@@ -27,10 +27,7 @@ public static class InterceptToolkit
         }
         pro.BuilderSnapshot(session,time,Index,size);
         await pro.BuilderStart(ms);
-        ms.Position = 0;
-        ms.Seek(0, SeekOrigin.Begin);
-        Bitmap b  = new(ms);
-        return null;
+        return new(ms);
     }
 
 

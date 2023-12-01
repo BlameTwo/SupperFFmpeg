@@ -11,8 +11,6 @@ public class PipeWriter
 {
     NamedPipeServerStream _write = null;
 
-    StreamReader reader;
-
     public PipeWriter(string pipeName, PipeDirection pipeDirection)
     {
         PipeName = pipeName;
@@ -36,8 +34,6 @@ public class PipeWriter
         );
         Thread thread = new(() =>
         {
-
-            _write.WaitForConnection();
             StartReader(stream);
         });
         thread.IsBackground = true;
@@ -47,19 +43,16 @@ public class PipeWriter
 
     private void StartReader(Stream stream)
     {
-        Task.Run(() =>
+        Task.Run(async() =>
         {
+            await _write.WaitForConnectionAsync();
             if (stream == null)
                 throw new ArgumentException("被动写入流错误");
-            if (_write.IsConnected)
+            stream.Seek(0, SeekOrigin.Begin);
+            using (StreamReader pipeWriter = new StreamReader(_write))
             {
-                stream.Seek(0, SeekOrigin.Begin);
-                reader = new StreamReader(_write);
-                while (!reader.EndOfStream)
-                {
-                    reader.BaseStream.CopyTo(stream);
-                }
-                Bitmap b = new Bitmap(stream);
+                if (_write.IsConnected)
+                    await pipeWriter.BaseStream.CopyToAsync(stream);
             }
         });
     }

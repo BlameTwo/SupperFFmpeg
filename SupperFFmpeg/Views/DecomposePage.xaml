@@ -21,17 +21,23 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <TextBlock HorizontalAlignment="Center" Text="{x:Bind ViewModel.FFmpegSession.Format.Filename, Mode=OneWay}" />
-                <ScrollView Grid.Row="2" Margin="0,15,0,0">
-                    <ItemsControl ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
-                </ScrollView>
                 <TextBlock
                     Grid.Row="1"
                     Margin="0,15,0,0"
                     HorizontalAlignment="Center"
                     Text="{x:Bind ViewModel.FFmpegSession.Format.Duration, Mode=OneWay, Converter={StaticResource LongToTimeSpanConverter}}" />
+                <Image
+                    Height="150"
+                    Source="{x:Bind ViewModel.ImageSnapshot, Mode=OneWay}"
+                    Stretch="Uniform" />
+                <ScrollView Grid.Row="3" Margin="0,15,0,0">
+                    <ItemsControl ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
+                </ScrollView>
+
             </Grid>
         </ui:DropFileCard>
         <Grid Grid.Column="1">
