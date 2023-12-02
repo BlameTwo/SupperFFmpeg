@@ -28,34 +28,6 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
     [ObservableProperty]
     BitmapImage _ImageSnapshot;
 
-    [RelayCommand]
-    async Task OpenFile()
-    {
-        var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
-        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(WindowManagerService.Window);
-        WinRT.Interop.InitializeWithWindow.Initialize(openPicker, hwnd);
-        openPicker.ViewMode = PickerViewMode.Thumbnail;
-        openPicker.FileTypeFilter.Add(".mkv");
-        openPicker.FileTypeFilter.Add(".mp4");
-        var file = await openPicker.PickSingleFileAsync();
-        if (file != null)
-        {
-            FFmpegStreams.Clear();
-            this.FFmpegSession = await FileStreamToolkit.GetFileInfo(file.Path);
-            foreach (var item in FFmpegSession.Streams)
-            {
-                this.FFmpegStreams.Add(DataFactory.SetData<FFmpegStreamItemViewModel,IFFmpegStream>(item));
-            }
-        }
-    }
-
-    [RelayCommand]
-    async Task OutputSelect()
-    {
-        var list = this.FFmpegStreams.Where((x) => x.IsSelect).ToArray();
-        bool result = await FileStreamToolkit.OutputStream(this.FFmpegSession,list[0].DataBase);
-    }
-
     [ObservableProperty]
     string _FilePath;
 
@@ -69,9 +41,9 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
             {
                 this.FFmpegStreams.Add(DataFactory.SetData<FFmpegStreamItemViewModel, IFFmpegStream>(item));
             }
-            var bitmap =  await InterceptToolkit.GetSnapshot(FFmpegSession, TimeSpan.FromMinutes(15),0, new(h: 1080, w: 1980));
+            var ivalue = Convert.ToDouble(this.FFmpegSession.Format.Duration);
+            var bitmap = await InterceptToolkit.GetSnapshot(FFmpegSession, new(0, 0, Random.Shared.Next(0, (int)ivalue)), 0, new(h: 1080, w: 1980));
             BitmapImage bitmapImage = new BitmapImage();
-            bitmap.Save("D:\\test.png");
             MemoryStream ms = new();
             bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
             ms.Position = 0;

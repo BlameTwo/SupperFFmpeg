@@ -24,44 +24,31 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBlock HorizontalAlignment="Center" Text="{x:Bind ViewModel.FFmpegSession.Format.Filename, Mode=OneWay}" />
+                <HyperlinkButton HorizontalAlignment="Center" Content="{x:Bind ViewModel.FFmpegSession.Format.Filename, Mode=OneWay}" />
                 <TextBlock
                     Grid.Row="1"
                     Margin="0,15,0,0"
                     HorizontalAlignment="Center"
                     Text="{x:Bind ViewModel.FFmpegSession.Format.Duration, Mode=OneWay, Converter={StaticResource LongToTimeSpanConverter}}" />
-                <Image
-                    Height="150"
+                <ui:ImageEx
+                    Grid.Row="2"
+                    CornerRadius="3"
                     Source="{x:Bind ViewModel.ImageSnapshot, Mode=OneWay}"
                     Stretch="Uniform" />
                 <ScrollView Grid.Row="3" Margin="0,15,0,0">
                     <ItemsControl ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
                 </ScrollView>
-
             </Grid>
         </ui:DropFileCard>
-        <Grid Grid.Column="1">
+        <Grid
+            Grid.Column="1"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+            BorderThickness="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Button
-                Margin="15,0,0,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Top"
-                Command="{x:Bind ViewModel.OpenFileCommand}"
-                Content="OpenFile" />
-            <Grid
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                Margin="15,10,0,0"
-                Padding="10"
-                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                BorderThickness="1"
-                CornerRadius="5">
-                <Button Command="{x:Bind ViewModel.OutputSelectCommand, Mode=OneWay}" Content="导出选中" />
-            </Grid>
         </Grid>
 
     </Grid>

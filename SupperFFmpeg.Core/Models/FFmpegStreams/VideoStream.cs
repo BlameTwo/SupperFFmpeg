@@ -188,6 +188,16 @@ public class VideoStream : IFFmpegStream
 
     [JsonPropertyName("tags")]
     public Tags Tags { get; set; }
+
+    public string ExtentionName()
+    {
+        throw new NotImplementedException();
+    }
+
+    public string FileName()
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class Disposition

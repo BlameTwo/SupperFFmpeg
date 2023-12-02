@@ -18,16 +18,19 @@ public static class InterceptToolkit
     /// <returns></returns>
     public static async Task<Bitmap> GetSnapshot(FFmpegSession session, TimeSpan time,int Index, Models.Size size)
     {
-        ///-ss 00:01:00.000 -i "C:\Users\30140\Desktop\bin\Auto.mkv" -f rawvideo -map 0:0 -c:v png -vframes 1 -s 200x400 "\\.\pipe\FFMpegCore_d16e9" -y
-        Processer pro = new( Models.Enums.FFmpegFile.FFmpeg);
-        MemoryStream ms = new();
-        if(size.Height == 0)
+        return await Task.Run(async() =>
         {
-            size = new Models.Size(h:720,w:1280);
-        }
-        pro.BuilderSnapshot(session,time,Index,size);
-        await pro.BuilderStart(ms);
-        return new(ms);
+            ///-ss 00:01:00.000 -i "C:\Users\30140\Desktop\bin\Auto.mkv" -f rawvideo -map 0:0 -c:v png -vframes 1 -s 200x400 "\\.\pipe\FFMpegCore_d16e9" -y
+            Processer pro = new(Models.Enums.FFmpegFile.FFmpeg);
+            MemoryStream ms = new();
+            if (size.Height == 0)
+            {
+                size = new Models.Size(h: 720, w: 1280);
+            }
+            pro.BuilderSnapshot(session, time, Index, size);
+            await pro.BuilderStart(ms);
+            return new Bitmap(ms);
+        });
     }
 
 

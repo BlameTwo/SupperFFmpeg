@@ -4,6 +4,7 @@ using SupperFFmpeg.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -36,12 +37,14 @@ public sealed class FileStreamToolkit
     {
         await Task.Run(() =>
         {
+            //ffmpeg -i input.mkv -map 0:0 -c:v libx264 output.mp4
+
             List<string> paramters =
             new()
             {
                 "-i " + dataBase.Format.Filename,
                 " -map " + $"0:{stream.Index}",
-                " -c " + "copy",
+                " -c:v " + "libx264",
                 " D:\\test.mp4",
             };
             var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
@@ -51,6 +54,7 @@ public sealed class FileStreamToolkit
             process.ErrorDataReceived += (sender, data) =>
             {
                 double progressvalue = 0.0;
+                Debug.WriteLine(data.Data);
                 if (!string.IsNullOrEmpty(data.Data))
                 {
                     string durationPattern = @"Duration: (\d{2}:\d{2}:\d{2}\.\d{2})";
@@ -78,5 +82,11 @@ public sealed class FileStreamToolkit
             process.WaitForExit();
         });
         return true;
+    }
+
+
+    public string GetOutputFileName(IFFmpegStream stream)
+    {
+        return "";
     }
 }

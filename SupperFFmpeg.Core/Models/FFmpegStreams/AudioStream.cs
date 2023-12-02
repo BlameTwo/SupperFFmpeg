@@ -65,6 +65,16 @@ public class AudioStream:IFFmpegStream
 
     [JsonPropertyName("tags")]
     public StreamTags Tags { get; set; }
+
+    public string ExtentionName()
+    {
+        return "";
+    }
+
+    public string FileName()
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 public class StreamTags

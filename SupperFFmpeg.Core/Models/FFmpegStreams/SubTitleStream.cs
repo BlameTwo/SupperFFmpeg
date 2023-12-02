@@ -59,4 +59,14 @@ public class SubTitleStream : IFFmpegStream
 
     [JsonPropertyName("tags")]
     public StreamTags Tags { get; set; }
+
+    public string ExtentionName()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public string FileName()
+    {
+        throw new System.NotImplementedException();
+    }
 }

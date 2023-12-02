@@ -14,6 +14,7 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/TitleBar.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/Button.xaml" />
+                <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/ImageEx.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/DropFileCard.xaml" />
                 <ResourceDictionary Source="ms-appx:///Views/UISelectors/FFmpegStreamDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
