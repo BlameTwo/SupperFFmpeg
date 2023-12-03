@@ -5,8 +5,11 @@ using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.Core.Contracts.Models;
 using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Core.Toolkits;
+using SupperFFmpeg.Models;
+using SupperFFmpeg.ViewModels.ControlViewModels;
 using SupperFFmpeg.ViewModels.ItemViewModels;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
@@ -31,6 +34,9 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
     [ObservableProperty]
     string _FilePath;
 
+    [ObservableProperty]
+    FileStreamSessionViewModel _FileStreamViewModel;
+
     async partial  void OnFilePathChanged(string value)
     {
         if (value != null)
@@ -39,7 +45,7 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
             this.FFmpegSession = await FileStreamToolkit.GetFileInfo(value);
             foreach (var item in FFmpegSession.Streams)
             {
-                this.FFmpegStreams.Add(DataFactory.SetData<FFmpegStreamItemViewModel, IFFmpegStream>(item));
+                this.FFmpegStreams.Add(DataFactory.SetItemData<FFmpegStreamItemViewModel, IFFmpegStream>(item));
             }
             var ivalue = Convert.ToDouble(this.FFmpegSession.Format.Duration);
             var bitmap = await InterceptToolkit.GetSnapshot(FFmpegSession, new(0, 0, Random.Shared.Next(0, (int)ivalue)), 0, new(h: 1080, w: 1980));
@@ -54,4 +60,16 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
 
     [ObservableProperty]
     ObservableCollection<FFmpegStreamItemViewModel> _FFmpegStreams=new();
+
+    [ObservableProperty]
+    FFmpegStreamItemViewModel _SelectItem;
+
+    [ObservableProperty]
+    List<DecomposeActionItem> _Tools;
+
+    partial void OnSelectItemChanged(FFmpegStreamItemViewModel value)
+    {
+        this.FileStreamViewModel = DataFactory.SetControlData<FileStreamSessionViewModel, IFFmpegStream>(value.DataBase);
+        this.Tools = DataFactory.CreateTool(value);
+    }
 }

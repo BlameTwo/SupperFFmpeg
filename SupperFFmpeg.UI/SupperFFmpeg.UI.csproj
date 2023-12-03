@@ -8,6 +8,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Styles\ImageEx.xaml" />
+    <None Remove="Styles\ListView.xaml" />
     <None Remove="Styles\TitleBar.xaml" />
   </ItemGroup>
 
@@ -15,6 +16,12 @@
       <PackageReference Include="CommunityToolkit.WinUI.Extensions" Version="8.0.230907" />
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231115000" />
 	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

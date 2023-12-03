@@ -10,46 +10,185 @@
     mc:Ignorable="d">
     <Grid AllowDrop="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
-        <ui:DropFileCard
-            x:Name="dropFile"
-            Title="无内容"
-            FilePath="{x:Bind ViewModel.FilePath, Mode=TwoWay}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <HyperlinkButton HorizontalAlignment="Center" Content="{x:Bind ViewModel.FFmpegSession.Format.Filename, Mode=OneWay}" />
-                <TextBlock
-                    Grid.Row="1"
-                    Margin="0,15,0,0"
-                    HorizontalAlignment="Center"
-                    Text="{x:Bind ViewModel.FFmpegSession.Format.Duration, Mode=OneWay, Converter={StaticResource LongToTimeSpanConverter}}" />
-                <ui:ImageEx
-                    Grid.Row="2"
-                    CornerRadius="3"
-                    Source="{x:Bind ViewModel.ImageSnapshot, Mode=OneWay}"
-                    Stretch="Uniform" />
-                <ScrollView Grid.Row="3" Margin="0,15,0,0">
-                    <ItemsControl ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}" ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}" />
-                </ScrollView>
-            </Grid>
-        </ui:DropFileCard>
+        <Border x:Name="LeftControl" Grid.Column="0">
+            <ui:DropFileCard Title="无内容" FilePath="{x:Bind ViewModel.FilePath, Mode=TwoWay}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.Transitions>
+                        <TransitionCollection>
+                            <RepositionThemeTransition />
+                        </TransitionCollection>
+                    </Grid.Transitions>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <ui:ImageEx
+                            Grid.Row="2"
+                            Width="200"
+                            CornerRadius="3"
+                            Source="{x:Bind ViewModel.ImageSnapshot, Mode=OneWay}"
+                            Stretch="UniformToFill" />
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="10,0,0,0"
+                            HorizontalAlignment="Left"
+                            Orientation="Vertical">
+                            <HyperlinkButton Padding="5" Content="打开源文件" />
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="5,10,0,0"
+                                Foreground="{ThemeResource SystemChromeGrayColor}"
+                                TextTrimming="CharacterEllipsis">
+                                <Run Text="时长:" />
+                                <Run Text="{x:Bind ViewModel.FFmpegSession.Format.Duration, Mode=OneWay, Converter={StaticResource LongToTimeSpanConverter}}" />
+                            </TextBlock>
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="5,10,0,0"
+                                Foreground="{ThemeResource SystemChromeGrayColor}"
+                                TextTrimming="CharacterEllipsis">
+                                <Run Text="大小:" />
+                                <Run Text="{x:Bind ViewModel.FFmpegSession.Format.Size, Mode=OneWay}" />
+                            </TextBlock>
+                            <TextBlock
+                                Grid.Row="1"
+                                Margin="5,10,0,0"
+                                Foreground="{ThemeResource SystemChromeGrayColor}"
+                                TextTrimming="CharacterEllipsis">
+                                <Run Text="编码:" />
+                                <Run Text="{x:Bind ViewModel.FFmpegSession.Format.FormatName, Mode=OneWay}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </Grid>
+                    <ScrollView Grid.Row="3" Margin="0,15,0,0">
+                        <ListView
+                            ItemContainerStyle="{ThemeResource DefaultListViewItem}"
+                            ItemTemplateSelector="{ThemeResource FFmpegStreamSelector}"
+                            ItemsSource="{x:Bind ViewModel.FFmpegStreams, Mode=OneWay}"
+                            SelectedItem="{x:Bind ViewModel.SelectItem, Mode=TwoWay}" />
+                    </ScrollView>
+                </Grid>
+            </ui:DropFileCard>
+        </Border>
         <Grid
+            x:Name="RightControl"
             Grid.Column="1"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            BorderThickness="1">
+            Margin="5,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-        </Grid>
+            <Grid
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <ContentControl
+                    Height="auto"
+                    Margin="10"
+                    Content="{x:Bind ViewModel.FileStreamViewModel, Mode=OneWay}"
+                    ContentTemplateSelector="{ThemeResource FFmpegStreamSelector}">
+                    <ContentControl.ContentTransitions>
+                        <TransitionCollection>
+                            <ContentThemeTransition />
+                        </TransitionCollection>
+                    </ContentControl.ContentTransitions>
+                </ContentControl>
+                <Button
+                    Grid.Column="1"
+                    Margin="0,0,15,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Style="{ThemeResource TransparentButtonStyle}"
+                    ToolTipService.ToolTip="复制基础信息">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE8C8;" />
+                </Button>
+            </Grid>
+            <Grid
+                Grid.Row="1"
+                Margin="0,5,0,0"
+                Padding="10"
+                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                BorderThickness="1"
+                CornerRadius="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBlock
+                    Margin="0,4,0,0"
+                    FontSize="18"
+                    Text="执行" />
+                <Button
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Style="{ThemeResource TransparentButtonStyle}">
+                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="&#xE897;" />
+                </Button>
+                <ItemsRepeater Grid.Row="1" ItemsSource="{x:Bind ViewModel.Tools, Mode=OneWay}">
+                    <ItemsRepeater.ItemTemplate>
+                        <DataTemplate>
+                            <Button
+                                Width="150"
+                                Height="80"
+                                Style="{ThemeResource TransparentButtonStyle}">
+                                <StackPanel Orientation="Vertical">
+                                    <FontIcon FontFamily="{ThemeResource SymbolThemeFontFamily}" Glyph="{Binding FontIcon, Mode=OneWay}" />
+                                    <TextBlock Margin="0,5,0,0" Text="{Binding Name, Mode=OneWay}" />
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsRepeater.ItemTemplate>
+                    <ItemsRepeater.ItemTransitionProvider>
+                        <LinedFlowLayoutItemCollectionTransitionProvider />
+                    </ItemsRepeater.ItemTransitionProvider>
+                    <ItemsRepeater.Layout>
+                        <UniformGridLayout
+                            ItemsJustification="Start"
+                            ItemsStretch="Uniform"
+                            MinItemHeight="80"
+                            MinItemWidth="150" />
+                    </ItemsRepeater.Layout>
 
+                </ItemsRepeater>
+            </Grid>
+        </Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="DefaultStateGroup">
+                <VisualState x:Name="Min700">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="700" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightControl.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Min0">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="RightControl.Visibility" Value="Collapsed" />
+                        <Setter Target="LeftControl.(Grid.ColumnSpan)" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
 </Page>

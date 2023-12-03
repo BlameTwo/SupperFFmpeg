@@ -1,9 +1,17 @@
 ﻿using SupperFFmpeg.Contracts.Interfaces;
+using SupperFFmpeg.Models;
+using System.Collections.Generic;
 
 namespace SupperFFmpeg.Contracts.Services;
 
 public interface IDataFactory
 {
-    public T SetData<T, Value>(Value data)
+    public T SetItemData<T, Value>(Value data)
         where T : IItemData<Value>;
+
+    public T SetControlData<T, ControlValue>(ControlValue data)
+        where T:IDataControl<ControlValue>;
+
+    public List<DecomposeActionItem> CreateTool(ViewModels.ItemViewModels.FFmpegStreamItemViewModel value);
+    
 }

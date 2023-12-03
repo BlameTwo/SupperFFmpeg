@@ -4,39 +4,31 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:model="using:SupperFFmpeg.Core.Models.FFmpegStreams">
     <DataTemplate x:Name="VideoStream">
-        <Grid
-            Margin="0,5,0,0"
-            Padding="10,5"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            BorderThickness="1"
-            CornerRadius="5">
+        <Grid Margin="0,5,0,0" Padding="5,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
             <FontIcon
-                Grid.Column="1"
+                Grid.Column="0"
                 FontFamily="Segoe Fluent Icons"
                 Glyph="&#xE714;" />
             <TextBlock
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="5,0,0,0"
                 VerticalAlignment="Center">
                 <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
                 <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" VerticalAlignment="Center">
+            <TextBlock Grid.Column="2" VerticalAlignment="Center">
                 <Run Text="帧率" />
                 <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.RFrameRate, Mode=OneWay, Converter={StaticResource FrameConverter}}" />
             </TextBlock>
             <TextBlock
-                Grid.Column="4"
+                Grid.Column="3"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center">
                 <Run Text="纵横比：" />
@@ -45,39 +37,31 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="AudioStream">
-        <Grid
-            Margin="0,5,0,0"
-            Padding="10,5"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            BorderThickness="1"
-            CornerRadius="5">
+        <Grid Margin="0,5,0,0" Padding="10,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
             <FontIcon
-                Grid.Column="1"
+                Grid.Column="0"
                 FontFamily="Segoe Fluent Icons"
                 Glyph="&#xE8D6;" />
             <TextBlock
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="5,0,0,0"
                 VerticalAlignment="Center">
                 <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
                 <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" VerticalAlignment="Center">
+            <TextBlock Grid.Column="2" VerticalAlignment="Center">
                 <Run Text="采样率" />
                 <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.SampleRate, Mode=OneWay}" />
             </TextBlock>
             <TextBlock
-                Grid.Column="4"
+                Grid.Column="3"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center">
                 <Run Text="时间基准：" />
@@ -86,39 +70,31 @@
         </Grid>
     </DataTemplate>
     <DataTemplate x:Name="SubtitleStream">
-        <Grid
-            Margin="0,5,0,0"
-            Padding="10,5"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            BorderThickness="1"
-            CornerRadius="5">
+        <Grid Margin="0,5,0,0" Padding="10,5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition />
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox IsChecked="{Binding IsSelect, Mode=TwoWay}" />
             <FontIcon
-                Grid.Column="1"
+                Grid.Column="0"
                 FontFamily="Segoe Fluent Icons"
                 Glyph="&#xED1E;" />
             <TextBlock
-                Grid.Column="2"
+                Grid.Column="1"
                 Margin="5,0,0,0"
                 VerticalAlignment="Center">
                 <Run Text="{Binding DataBase.CodecType, Mode=OneWay}" />
                 <Run Text="-" />
                 <Run Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             </TextBlock>
-            <TextBlock Grid.Column="3" VerticalAlignment="Center">
+            <TextBlock Grid.Column="2" VerticalAlignment="Center">
                 <Run Text="语言" />
                 <Run Foreground="{ThemeResource AccentAAFillColorDefaultBrush}" Text="{Binding DataBase.Tags.Language, Mode=OneWay}" />
             </TextBlock>
             <TextBlock
-                Grid.Column="4"
+                Grid.Column="3"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center">
                 <Run Text="时间基准：" />

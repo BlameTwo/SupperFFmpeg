@@ -15,8 +15,10 @@
     <!--<WindowsPackageType>None</WindowsPackageType>-->
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Views\DecomponseControl\FileStreamSession.xaml" />
     <None Remove="Views\DecomposePage.xaml" />
     <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\UISelectors\FFmpegStreamControlDataTemplate.xaml" />
     <None Remove="Views\UISelectors\FFmpegStreamDataTemplate.xaml" />
     <None Remove="Views\WorkSpacePage.xaml" />
   </ItemGroup>
@@ -74,7 +76,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Page Update="Views\UISelectors\FFmpegStreamControlDataTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Views\DecomponseControl\FileStreamSession.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!-- 

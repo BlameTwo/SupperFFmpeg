@@ -126,7 +126,7 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE84F;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem navigation:NavigationItemClickHelper.NavigationKey="SupperFFmpeg.ViewModels.DecomposeViewModel" Content="重组与分解">
+                <NavigationViewItem navigation:NavigationItemClickHelper.NavigationKey="SupperFFmpeg.ViewModels.DecomposeViewModel" Content="分解">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE96A;" />
                     </NavigationViewItem.Icon>

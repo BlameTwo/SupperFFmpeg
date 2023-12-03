@@ -1,0 +1,122 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:uiconvert="using:SupperFFmpeg.Converters">
+    <DataTemplate x:Key="StreamVideoControlDT">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="编码器：" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding DataBase.CodecName, Mode=OneWay}" />
+            <TextBlock Grid.Row="1" Text="流索引：" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding DataBase.Index, Mode=OneWay}" />
+            <TextBlock Grid.Row="2" Text="编码视频像素：" />
+            <TextBlock Grid.Row="2" Grid.Column="1">
+                <Run Text="{Binding DataBase.CodedWidth, Mode=OneWay}" />
+                <Run Text="X" />
+                <Run Text="{Binding DataBase.CodedHeight, Mode=OneWay}" />
+            </TextBlock>
+            <TextBlock Grid.Row="3" Text="编码等级：" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding DataBase.Level, Mode=OneWay}" />
+            <TextBlock Grid.Row="4" Text="是否支持AVC：" />
+            <TextBlock
+                Grid.Row="4"
+                Grid.Column="1"
+                Text="{Binding DataBase.IsAvc, Mode=OneWay}" />
+            <TextBlock Grid.Row="5" Text="实际帧率：" />
+            <TextBlock
+                Grid.Row="5"
+                Grid.Column="1"
+                Text="{Binding DataBase.RFrameRate, Mode=OneWay, Converter={ThemeResource FrameConverter}}" />
+        </Grid>
+
+    </DataTemplate>
+    <DataTemplate x:Key="StreamAudioControlDT">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Text="编码器：" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding DataBase.CodecName, Mode=OneWay}" />
+            <TextBlock Grid.Row="1" Text="流索引：" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding DataBase.Index, Mode=OneWay}" />
+            <TextBlock Grid.Row="2" Text="音频通道：" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding DataBase.Channels, Mode=OneWay}" />
+            <TextBlock Grid.Row="3" Text="采样率：" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding DataBase.SampleRate, Mode=OneWay}" />
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="StreamSubtitleControlDT">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Text="编码器：" />
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Text="{Binding DataBase.CodecName, Mode=OneWay}" />
+            <TextBlock Grid.Row="1" Text="流索引：" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="1"
+                Text="{Binding DataBase.Index, Mode=OneWay}" />
+            <TextBlock Grid.Row="2" Text="字幕语言：" />
+            <TextBlock
+                Grid.Row="2"
+                Grid.Column="1"
+                Text="{Binding DataBase.Tags.Language, Mode=OneWay}" />
+            <TextBlock Grid.Row="3" Text="字幕持续时间：" />
+            <TextBlock
+                Grid.Row="3"
+                Grid.Column="1"
+                Text="{Binding DataBase.Tags.DURATION, Mode=OneWay}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

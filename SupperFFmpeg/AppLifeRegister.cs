@@ -3,6 +3,7 @@ using Microsoft.Extensions.Hosting;
 using SupperFFmpeg.Contracts;
 using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.ViewModels;
+using SupperFFmpeg.ViewModels.ControlViewModels;
 using SupperFFmpeg.ViewModels.ItemViewModels;
 using SupperFFmpeg.Views;
 using System.Threading.Tasks;
@@ -33,6 +34,10 @@ public static class AppLifeRegister
 
             #region ItemViewModel
             service.AddTransient<FFmpegStreamItemViewModel>();
+            #endregion
+
+            #region ControlViewModel
+            service.AddTransient<FileStreamSessionViewModel>();
             #endregion
         }).Build();
         await Host.StartAsync();

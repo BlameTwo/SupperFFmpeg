@@ -4,5 +4,5 @@ public interface IItemData<T>
 {
     public T DataBase { get; set; }
 
-    public void SetData(T value);
+    public void SetItemData(T value);
 }
