@@ -23,8 +23,6 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
     public IWindowManagerService WindowManagerService { get; } = windowManagerService;
     public IDataFactory DataFactory { get; } = dataFactory;
 
-    public FileStreamToolkit FileStreamToolkit => new();
-
     [ObservableProperty]
     FFmpegSession _FFmpegSession;
 

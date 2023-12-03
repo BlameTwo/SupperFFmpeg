@@ -12,17 +12,15 @@ using System.Threading.Tasks;
 
 namespace SupperFFmpeg.Core.Toolkits;
 
-public sealed class FileStreamToolkit
+public static class FileStreamToolkit
 {
-    private TimeSpan totalDuration;
-    private TimeSpan currentDuration;
 
     /// <summary>
     /// 获得一个视频文件的详细信息
     /// </summary>
     /// <param name="path">文件地址</param>
     /// <returns></returns>
-    public async Task<FFmpegSession> GetFileInfo(string path)
+    public static async Task<FFmpegSession> GetFileInfo(string path)
     {
         var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
             SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFprobe,
@@ -33,59 +31,8 @@ public sealed class FileStreamToolkit
         return JsonSerializer.Deserialize<FFmpegSession>(jsonstr)!;
     }
 
-    public async Task<bool> OutputStream(FFmpegSession dataBase, IFFmpegStream stream)
-    {
-        await Task.Run(() =>
-        {
-            //ffmpeg -i input.mkv -map 0:0 -c:v libx264 output.mp4
 
-            List<string> paramters =
-            new()
-            {
-                "-i " + dataBase.Format.Filename,
-                " -map " + $"0:{stream.Index}",
-                " -c:v " + "libx264",
-                " D:\\test.mp4",
-            };
-            var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
-                SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFmpeg,
-                paramters
-            );
-            process.ErrorDataReceived += (sender, data) =>
-            {
-                double progressvalue = 0.0;
-                Debug.WriteLine(data.Data);
-                if (!string.IsNullOrEmpty(data.Data))
-                {
-                    string durationPattern = @"Duration: (\d{2}:\d{2}:\d{2}\.\d{2})";
-                    string progressPattern = @"time=([^bitrate]+)";
-
-                    Match durationMatch = Regex.Match(data.Data, durationPattern);
-                    if (durationMatch.Success)
-                    {
-                        if (totalDuration == TimeSpan.Zero)
-                            totalDuration = TimeSpan.Parse(durationMatch.Groups[1].Value);
-                    }
-                    Match progressMatch = Regex.Match(data.Data, progressPattern);
-                    if (progressMatch.Success)
-                    {
-                        currentDuration = TimeSpan.Parse(progressMatch.Groups[1].Value);
-                        progressvalue =
-                            currentDuration.TotalSeconds / totalDuration.TotalSeconds * 100;
-                        Debug.WriteLine(progressvalue);
-                    }
-                }
-            };
-            process.Start();
-            process.BeginOutputReadLine();
-            process.BeginErrorReadLine();
-            process.WaitForExit();
-        });
-        return true;
-    }
-
-
-    public string GetOutputFileName(IFFmpegStream stream)
+    public static string GetOutputFileName(IFFmpegStream stream)
     {
         return "";
     }

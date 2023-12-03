@@ -1,6 +1,9 @@
-﻿using SupperFFmpeg.Core.Common;
+﻿using SupperFFmpeg.Core.Arguments.Processers;
+using SupperFFmpeg.Core.Common;
+using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Core.Models.Enums;
 using SupperFFmpeg.Core.Toolkits;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
@@ -11,11 +14,15 @@ using System.Threading.Tasks;
 
 namespace SupperFFmpeg.Core.Arguments;
 
-public class Processer
+public abstract class Processer<T>
 {
+    public T Result { get; internal set; }
+
     public List<string> Arguments { get; private set; }
 
     private PipeWriter pipWriter;
+
+    public ProcessStartInfo StartInfo { get; internal set; }
 
     ProcessStartInfo startInfo;
 
@@ -33,27 +40,47 @@ public class Processer
         set { _pipeName = value; }
     }
 
-    public async Task BuilderStart(Stream stream)
-    {
-        this.PipeName = $"FFMPEGCORE_{PipeToolkit.CreatePipName()}";
-        pipWriter = new PipeWriter(PipeName, PipeDirection.InOut);
-        Arguments.Add($"\"\\\\.\\pipe\\{PipeName}\" -y");
-        using (Process p = new())
-        {
-            startInfo = ProcessBuilder.CreateProcessInfo(FFmpegFile.FFmpeg, this.Arguments);
-            p.StartInfo = startInfo;
-            p.ErrorDataReceived += (sender, obj) =>
-            {
-                Debug.WriteLine(obj.Data);
-            };
-            pipWriter.Connect(stream);
-            p.Start();
-            p.BeginErrorReadLine();
-            p.WaitForExit();
-        };
-    }
+    public abstract Task BuilderStart();
 
     public FFmpegFile FFmpegFile { get; }
 
+}
 
+public static class ProcesserHelper
+{
+    internal static PipeProcesser BuilderSnapshot(this PipeProcesser processer, FFmpegSession session, TimeSpan time, int index, Models.Size size)
+    {
+        CheckArgument(processer);
+        processer.Arguments.Add($"-ss {time.ToString("g")}");
+        processer.Arguments.Add($"-i \"{session.Format.Filename}\"");
+        processer.Arguments.Add("-f rawvideo");
+        processer.Arguments.Add("-map" + $" 0:{index}");
+        processer.Arguments.Add("-c:v png");
+        processer.Arguments.Add("-vframes 1");
+        processer.Arguments.Add("-s" + $" {size.Width}x{size.Height}");
+        return processer;
+    }
+
+    internal static DefaultProcesser BuilderHwaccelList(this DefaultProcesser processer)
+    {
+        CheckArgument(processer);
+        processer.Arguments.Add("-hide_banner");
+        processer.Arguments.Add("-encoders");
+        return processer;
+    }
+
+    static void CheckArgument(PipeProcesser processer)
+    {
+        //./ffmpeg -hide_banner -encoders -hwaccels
+        if (processer == null)
+            throw new ArgumentException("参数为空");
+
+    }
+    static void CheckArgument(DefaultProcesser processer)
+    {
+        //./ffmpeg -hide_banner -encoders -hwaccels
+        if (processer == null)
+            throw new ArgumentException("参数为空");
+
+    }
 }
