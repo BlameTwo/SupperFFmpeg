@@ -24,7 +24,7 @@ public static class FileStreamToolkit
     {
         var process = SupperFFmpeg.Core.Common.ProcessBuilder.CreateProcess(
             SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFprobe,
-            new() { $"-show_streams -show_format {path}", { "-of json" } }
+            new() { $"-show_streams -show_format \"{path}\"", { "-of json" } }
         );
         var jsonstr = await ProcessRun.RunProcessAsync(process);
         Debug.WriteLine(jsonstr);

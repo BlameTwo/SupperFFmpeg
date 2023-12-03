@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Text;
 using SupperFFmpeg.Core.Models.Enums;
 
 namespace SupperFFmpeg.Core.Common;
@@ -20,8 +21,12 @@ public static class ProcessBuilder
                 WorkingDirectory = CoreConfig.Instance.FFMEFolder,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                RedirectStandardInput = true,
+                StandardOutputEncoding = Encoding.UTF8,
+                StandardInputEncoding = Encoding.UTF8,
                 UseShellExecute = false
             };
+        
         pos.StartInfo = info;
         return pos;
     }
