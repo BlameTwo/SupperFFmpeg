@@ -1,24 +1,16 @@
-﻿using SupperFFmpeg.Core.Arguments.Processers;
-using SupperFFmpeg.Core.Common;
-using SupperFFmpeg.Core.Models;
+﻿using SupperFFmpeg.Core.Common;
 using SupperFFmpeg.Core.Models.Enums;
 using SupperFFmpeg.Core.Toolkits;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace SupperFFmpeg.Core.Arguments;
 
 public class PipeProcesser:Processer<Stream>
 {
-
     private PipeWriter pipWriter;
-
 
 
     private string _pipeName;
@@ -52,6 +44,6 @@ public class PipeProcesser:Processer<Stream>
         });
     }
 
-    public FFmpegFile FFmpegFile { get; }
+
 }
 

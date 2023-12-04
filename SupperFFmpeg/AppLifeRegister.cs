@@ -31,6 +31,8 @@ public static class AppLifeRegister
             service.AddTransient<DecomposeViewModel>();
             service.AddTransient<WorkSpacePage>();
             service.AddTransient<WorkSpaceViewModel>();
+            service.AddTransient<RecodePage>();
+            service.AddTransient<RecodeViewModel>();
 
             #region ItemViewModel
             service.AddTransient<FFmpegStreamItemViewModel>();

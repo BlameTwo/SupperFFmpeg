@@ -19,6 +19,7 @@ public sealed class PageService : IPageService
         RegisterObject<MainPage, MainViewModel>();
         RegisterObject<DecomposePage, DecomposeViewModel>();
         RegisterObject<WorkSpacePage, WorkSpaceViewModel>();
+        RegisterObject<RecodePage, RecodeViewModel>();
     }
 
 

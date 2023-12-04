@@ -25,13 +25,6 @@ public abstract class FFmpegPip
     public string PipName { get; }
     public PipeDirection Type { get; }
 
-    public async Task ConnectAsync(CancellationToken token = default)
-    {
-        _Readerclient = new NamedPipeServerStream(PipName,Type,1, PipeTransmissionMode.Byte, PipeOptions.Asynchronous);
-        await _Readerclient.WaitForConnectionAsync(token).ConfigureAwait(false);
-        if (!_Readerclient.IsConnected)
-            throw new TaskCanceledException();
-    }
 
 
     public async Task DisconnectAsync()
