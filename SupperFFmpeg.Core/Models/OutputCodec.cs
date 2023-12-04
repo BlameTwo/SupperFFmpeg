@@ -7,14 +7,23 @@ public class OutputCodec
     /// <summary>
     /// 音频表示可解码字段
     /// </summary>
-    public const string AD = "A....D";
+    public const string AAD = "A....D";
 
     /// <summary>
     /// 音频表示非可解码字段
     /// </summary>
-    public const string A = "A....";
+    public const string AA = "A....";
 
+    /// <summary>
+    /// 带D的都是表示带解码
+    /// </summary>
+    public const string VVD = "V....D";
 
+    public const string VA = "V....";
+
+    public const string SSD = "S....D";
+
+    public const string SA = "S....";
 
 
     [JsonProperty("CodecType")]

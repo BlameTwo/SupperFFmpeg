@@ -1,11 +1,8 @@
-﻿using Microsoft.PowerShell.Commands;
-using SupperFFmpeg.Core.Arguments;
-using SupperFFmpeg.Core.Arguments.Processers;
+﻿using SupperFFmpeg.Core.Arguments.Processers;
 using SupperFFmpeg.Core.Common;
 using SupperFFmpeg.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -74,6 +71,10 @@ public static class CodecToolkit
         return FormatOutputCodec(lins);
     }
 
+    /// <summary>
+    /// 支持的视频编码器
+    /// </summary>
+    /// <returns></returns>
     public static async Task<List<OutputCodec>> GetVideoCodecList()
     {
         PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
@@ -82,6 +83,10 @@ public static class CodecToolkit
         return FormatOutputCodec(lins);
     }
 
+    /// <summary>
+    /// 支持的图像编码器，不稳定
+    /// </summary>
+    /// <returns></returns>
     public static async Task<List<OutputCodec>> GetImageCodecList()
     {
         PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
@@ -90,6 +95,10 @@ public static class CodecToolkit
         return FormatOutputCodec(lins);
     }
 
+    /// <summary>
+    /// 支持的字幕编码器
+    /// </summary>
+    /// <returns></returns>
     public static async Task<List<OutputCodec>> GetSubtitleCodecList()
     {
         PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
