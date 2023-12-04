@@ -20,6 +20,7 @@ public class PipeProcesser:Processer<Stream>
         this.Result = new MemoryStream();
     }
 
+    public ProcessStartInfo StartInfo { get; private set; }
 
     public override async Task BuilderStart()
     {

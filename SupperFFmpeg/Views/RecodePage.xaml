@@ -48,7 +48,7 @@
                 BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
                 BorderThickness="1"
                 CornerRadius="5">
-                <lab:Segmented VerticalAlignment="Top" Style="{ThemeResource ButtonSegmentedStyle}">
+                <lab:Segmented VerticalAlignment="Top" Style="{ThemeResource PivotSegmentedStyle}">
                     <lab:SegmentedItem Content="视频" />
                     <lab:SegmentedItem Content="音频" />
                     <lab:SegmentedItem Content="字幕" />
