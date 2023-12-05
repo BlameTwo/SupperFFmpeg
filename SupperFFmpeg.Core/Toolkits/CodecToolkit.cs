@@ -1,29 +1,12 @@
-﻿using SupperFFmpeg.Core.Arguments.Processers;
-using SupperFFmpeg.Core.Common;
-using SupperFFmpeg.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿
 
 namespace SupperFFmpeg.Core.Toolkits;
 
 /// <summary>
-/// 硬件加速工具箱
+/// 解码器信息
 /// </summary>
 public static class CodecToolkit
 {
-    /// <summary>
-    /// 获得当前硬件平台简单信息
-    /// </summary>
-    /// <returns></returns>
-    public async static Task<string> GetHwaccelList()
-    {
-        ///-ss 00:01:00.000 -i "C:\Users\30140\Desktop\bin\Auto.mkv" -f rawvideo -map 0:0 -c:v png -vframes 1 -s 200x400 "\\.\pipe\FFMpegCore_d16e9" -y
-        PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
-        pro.BuilderHwaccelList();
-        return await GetResult(pro);
-    }
 
     public static async Task<string> GetResult(PowerShellProcesser pro)
     {
@@ -31,15 +14,17 @@ public static class CodecToolkit
         return pro.Result;
     }
 
-    private static List<OutputCodec> FormatOutputCodec(string strline)
+    private static List<OutputCodec> FormatOutputCodec(string strline,CodecType codecType)
     {
         List<OutputCodec> codec = new();
         string[] lines = strline.Split(new[] { "\r\n" }, StringSplitOptions.None);
         string pattern = @"(\S+)\s+(\S+)\s+(\S+)\s+(.+)";
-
-        foreach (string line in lines)
+        var index = 0;
+        if (codecType == CodecType.HwaccelAudio || codecType == CodecType.HwaccelVideo)
+            index = 10;
+        for (int i = index; i < lines.Length; i++)
         {
-            Match match = Regex.Match(line, pattern);
+            Match match = Regex.Match(lines[i], pattern);
 
             if (match.Success)
             {
@@ -60,50 +45,17 @@ public static class CodecToolkit
     }
 
     /// <summary>
-    /// 获得支持的音频编码器
+    /// 获得支持的编码器
     /// </summary>
+    /// <param name="type">类型</param>
     /// <returns></returns>
-    public async static Task<List<OutputCodec>> GetAudioCodecList()
+    public async static Task<List<OutputCodec>> GetCodecListAsync(CodecType type)
     {
         PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
-        pro.BuilderAudioCodec();
+        pro.BuilderCodec(type);
         var lins = await GetResult(pro);
-        return FormatOutputCodec(lins);
+        return FormatOutputCodec(lins,type);
     }
 
-    /// <summary>
-    /// 支持的视频编码器
-    /// </summary>
-    /// <returns></returns>
-    public static async Task<List<OutputCodec>> GetVideoCodecList()
-    {
-        PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
-        pro.BuilderVideoCodec();
-        var lins = await GetResult(pro);
-        return FormatOutputCodec(lins);
-    }
-
-    /// <summary>
-    /// 支持的图像编码器，不稳定
-    /// </summary>
-    /// <returns></returns>
-    public static async Task<List<OutputCodec>> GetImageCodecList()
-    {
-        PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
-        pro.BuilderImageCodec();
-        var lins = await GetResult(pro);
-        return FormatOutputCodec(lins);
-    }
-
-    /// <summary>
-    /// 支持的字幕编码器
-    /// </summary>
-    /// <returns></returns>
-    public static async Task<List<OutputCodec>> GetSubtitleCodecList()
-    {
-        PowerShellProcesser pro = new(Models.Enums.FFmpegFile.FFmpeg);
-        pro.BuilderSubtitleCodec();
-        var lins = await GetResult(pro);
-        return FormatOutputCodec(lins);
-    }
+    
 }

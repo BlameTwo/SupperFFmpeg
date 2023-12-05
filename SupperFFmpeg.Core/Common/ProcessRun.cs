@@ -1,7 +1,4 @@
-﻿using System.Diagnostics;
-using System.Threading.Tasks;
-using System;
-namespace SupperFFmpeg.Core.Common;
+﻿namespace SupperFFmpeg.Core.Common;
 
 public static class ProcessRun
 {

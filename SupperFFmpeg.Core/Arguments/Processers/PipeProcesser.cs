@@ -1,12 +1,4 @@
-﻿using SupperFFmpeg.Core.Common;
-using SupperFFmpeg.Core.Models.Enums;
-using SupperFFmpeg.Core.Toolkits;
-using System.Diagnostics;
-using System.IO;
-using System.IO.Pipes;
-using System.Threading.Tasks;
-
-namespace SupperFFmpeg.Core.Arguments;
+﻿namespace SupperFFmpeg.Core.Arguments;
 
 public class PipeProcesser:Processer<Stream>
 {

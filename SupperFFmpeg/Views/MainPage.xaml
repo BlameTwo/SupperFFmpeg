@@ -130,13 +130,18 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE96A;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
+                <NavigationViewItem Content="混流">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE93E;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
                 <NavigationViewItem Content="压缩">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE945;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItemHeader Content="图像" />
-                <NavigationViewItem navigation:NavigationItemClickHelper.NavigationKey="SupperFFmpeg.ViewModels.RecodeViewModel" Content="图像转码">
+                <NavigationViewItem Content="图像转码">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B9;" />
                     </NavigationViewItem.Icon>

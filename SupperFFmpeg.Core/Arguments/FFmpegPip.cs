@@ -1,11 +1,4 @@
-﻿using System.Globalization;
-using System.IO;
-using System.IO.Pipes;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace SupperFFmpeg.Core.Arguments;
+﻿namespace SupperFFmpeg.Core.Arguments;
 
 /// <summary>
 /// FFmpeg 进程管道

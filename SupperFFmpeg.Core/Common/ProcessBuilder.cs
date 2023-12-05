@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Management.Automation;
-using System.Management.Automation.Runspaces;
-using System.Text;
-using SupperFFmpeg.Core.Arguments.Processers;
-using SupperFFmpeg.Core.Arguments;
-using SupperFFmpeg.Core.Models;
-using SupperFFmpeg.Core.Models.Enums;
+﻿
 
 namespace SupperFFmpeg.Core.Common;
 
@@ -85,39 +75,41 @@ public static class ProcessBuilder
         return processer;
     }
 
-    internal static PowerShellProcesser BuilderAudioCodec(this PowerShellProcesser processer)
-    {
-        processer.BuilderCodec();
-        processer.Arguments.Add("|Select-String \"audio\"");
-        return processer;
-    }
-
-    internal static PowerShellProcesser BuilderVideoCodec(this PowerShellProcesser processer)
-    {
-        processer.BuilderCodec();
-        processer.Arguments.Add("|Select-String \"video\"");
-        return processer;
-    }
-    internal static PowerShellProcesser BuilderSubtitleCodec(this PowerShellProcesser processer)
-    {
-        processer.BuilderCodec();
-        processer.Arguments.Add("|Select-String \"subtitles\"");
-        return processer;
-    }
-    
-    internal static PowerShellProcesser BuilderImageCodec(this PowerShellProcesser processer)
-    {
-        processer.BuilderCodec();
-        processer.Arguments.Add("|Select-String \"image\"");
-        return processer;
-    }
-
-    private static PowerShellProcesser BuilderCodec(this PowerShellProcesser processer)
+    internal static PowerShellProcesser BuilderCodec(this PowerShellProcesser processer, CodecType type)
     {
         CheckArgument(processer);
         processer.Arguments.Add("-encoders");
+        
+        string codec = string.Empty;
+        switch (type)
+        {
+            case CodecType.Video:
+                codec = "video";
+                break;
+            case CodecType.Audio:
+                codec = "audio";
+                break;
+            case CodecType.Image:
+                codec = "image";
+                break;
+            case CodecType.Subtitle:
+                codec = "subtitles";
+                break;
+            case CodecType.HwaccelVideo:
+                processer.Arguments.Add("-hide_banner");
+                break;
+            case CodecType.HwaccelAudio:
+                processer.Arguments.Add("-hide_banner");
+                break;
+        }
+        if(type == CodecType.HwaccelAudio || type == CodecType.HwaccelVideo)
+        {
+            return processer;
+        }
+        processer.Arguments.Add($"|Select-String \"{codec}\"");
         return processer;
     }
+
 
     static void CheckArgument(PipeProcesser processer)
     {

@@ -1,7 +1,4 @@
-﻿using SupperFFmpeg.Core.Models.Enums;
-using System.Threading.Tasks;
-
-namespace SupperFFmpeg.Core.Arguments.Processers;
+﻿namespace SupperFFmpeg.Core.Arguments.Processers;
 
 public sealed class OutputProcesser : Processer<string>
 {
