@@ -2,8 +2,7 @@
 
 public abstract class OutputToolkit
 {
-    public abstract void BuilderProcesser();
+    public abstract Processer<string> BuilderProcesser();
 
-    public abstract void BuilderArgument(CodeingVideoConfig config);
-    
+    public abstract List<string> BuilderArgument(CodeingVideoConfig config);
 }

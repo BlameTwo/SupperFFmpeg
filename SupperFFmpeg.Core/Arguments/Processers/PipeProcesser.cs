@@ -4,12 +4,18 @@ public class PipeProcesser:Processer<Stream>
 {
     private PipeWriter pipWriter;
 
-
-    private string _pipeName;
-
     public PipeProcesser(FFmpegFile fFmpegFile) : base(fFmpegFile)
     {
         this.Result = new MemoryStream();
+    }
+
+
+    private string _pipeName;
+
+    public string PipeName
+    {
+        get { return _pipeName; }
+        set { _pipeName = value; }
     }
 
     public ProcessStartInfo StartInfo { get; private set; }

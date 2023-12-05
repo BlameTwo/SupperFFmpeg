@@ -9,13 +9,15 @@ public class CodeingVideoConfig
 
     public bool IsCopyAudioStream { get; set; }
 
+    public bool IsCustomVideoIndex { get; set; }
+
     /// <summary>
     /// 是否使用头个视频流和音频流
     /// </summary>
     public bool IsOutputFirstStream { get; set; }
 
     /// <summary>
-    /// 是否打开速度
+    /// 是否打开自动速度
     /// </summary>
     public bool IsAutoSpeed { get; set; }
 

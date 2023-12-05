@@ -38,8 +38,12 @@ public static class ProcessBuilder
                 Arguments = " " + argumentStr,
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden,
+                RedirectStandardInput = true,
                 RedirectStandardOutput = true,
                 RedirectStandardError = true,
+                StandardErrorEncoding = Encoding.UTF8,
+                StandardInputEncoding = Encoding.UTF8,
+                StandardOutputEncoding= Encoding.UTF8,
                 UseShellExecute = false
             };
         return info;

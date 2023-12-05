@@ -1,9 +1,7 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using SupperFFmpeg.Contracts.Interfaces;
+﻿using SupperFFmpeg.Contracts.Interfaces;
 using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.Models;
 using System.Collections.Generic;
-using Windows.Services.Maps;
 
 namespace SupperFFmpeg.Contracts;
 

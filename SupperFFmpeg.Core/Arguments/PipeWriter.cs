@@ -27,29 +27,26 @@ public class PipeWriter
             PipeTransmissionMode.Byte,
             PipeOptions.Asynchronous,10000,10000
         );
-        Thread thread = new(() =>
+        Thread thread = new(async() =>
         {
-            StartReader(stream);
+            await StartReader(stream);
         });
         thread.IsBackground = true;
         thread.Start();
         return false;
     }
 
-    private void StartReader(Stream stream)
+    private async Task StartReader(Stream stream)
     {
-        Task.Run(async() =>
+        await _write.WaitForConnectionAsync();
+        if (stream == null)
+            throw new ArgumentException("被动写入流错误");
+        stream.Seek(0, SeekOrigin.Begin);
+        using (StreamReader pipeWriter = new StreamReader(_write))
         {
-            await _write.WaitForConnectionAsync();
-            if (stream == null)
-                throw new ArgumentException("被动写入流错误");
-            stream.Seek(0, SeekOrigin.Begin);
-            using (StreamReader pipeWriter = new StreamReader(_write))
-            {
-                if (_write.IsConnected)
-                    await pipeWriter.BaseStream.CopyToAsync(stream);
-            }
-        });
+            if (_write.IsConnected)
+                await pipeWriter.BaseStream.CopyToAsync(stream);
+        }
     }
 
     public async Task Disconnect()
