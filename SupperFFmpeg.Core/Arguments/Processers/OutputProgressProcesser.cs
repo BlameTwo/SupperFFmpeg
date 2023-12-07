@@ -28,6 +28,7 @@ public sealed class OutputProgressProcesser : Processer<string>
     private TimeSpan totalDuration;
     #endregion
 
+
     public OutputProgressProcesser(FFmpegFile fFmpegFile) : base(fFmpegFile)
     {
         
@@ -39,9 +40,11 @@ public sealed class OutputProgressProcesser : Processer<string>
     {
         await Task.Run(async () =>
         {
+            IsRuning = true;
             using (Process ps = new())
             {
                 this.StartInfo = ProcessBuilder.CreateProcessInfo(this.FFmpegFile, this.Arguments);
+                ps.StartInfo = this.StartInfo;
                 ps.ErrorDataReceived += (sender, result) =>
                 {
                     this.outputProcesserHandler?.Invoke(this, result.Data!);
@@ -55,6 +58,7 @@ public sealed class OutputProgressProcesser : Processer<string>
                 ps.Close();
                 ps.Dispose();
             }
+            IsRuning = false;
         });
     }
 

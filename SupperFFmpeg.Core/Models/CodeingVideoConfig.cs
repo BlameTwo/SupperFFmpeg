@@ -1,5 +1,7 @@
 ﻿namespace SupperFFmpeg.Core.Models;
 
+
+
 public class CodeingVideoConfig
 {
     /// <summary>
@@ -34,3 +36,4 @@ public class CodeingVideoConfig
     public bool IsVsync { get; private set; }
 
 }
+

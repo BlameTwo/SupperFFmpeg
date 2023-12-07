@@ -16,8 +16,9 @@ CoreConfig.Instance.FFMEFolder = "C:\\Users\\30140\\Desktop\\bin";
 //    0,
 //    new(h: 1920, w: 1080)
 //);
-
+//MP4帮助类
 H254H265OutputToolkit toolkit = new();
+//设置H264和H265的编码器配置
 var arg = new H264H265Config()
 {
     IsAutoBit = true,
@@ -35,9 +36,28 @@ var arg = new H264H265Config()
     VideoFrame = 25,
     VideoSpeed = 100
 };
+Console.WriteLine($"原始地址:{arg.InputPath}");
+Console.WriteLine($"自动比特率：{arg.IsAutoBit}");
+Console.WriteLine($"原始帧率：{arg.IsAutoFrame}");
+Console.WriteLine($"原始速度：{arg.IsAutoSpeed}");
+Console.WriteLine($"视频流是否复制（不进行二次编码器编码）：{arg.IsCopyVideoStream}");
+Console.WriteLine($"音频流是否复制（不进行二次编码器编码）：{arg.IsCopyAudioStream}");
+Console.WriteLine($"输出地址:{arg.OutputPath}");
 var list =  toolkit.BuilderArgument(arg);
-OutputProgressProcesser outputProcesser = new OutputProgressProcesser( SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFmpeg);
+//初始化输出进度进程
+OutputProgressProcesser outputProcesser = new OutputProgressProcesser(SupperFFmpeg.Core.Models.Enums.FFmpegFile.FFmpeg);
+//进度更改事件
+outputProcesser.ProgressProcesserMessageEvent += OutputProcesser_ProgressProcesserMessageEvent;
+
+void OutputProcesser_ProgressProcesserMessageEvent(object source, double progress)
+{
+    //打印转换进度
+    Console.WriteLine($"当前进度：{Math.Round(progress,2)}%");
+}
+
+//输入参数
 outputProcesser.Arguments = list;
+//开始转换
 await outputProcesser.BuilderStart();
 
 Console.ReadKey();
