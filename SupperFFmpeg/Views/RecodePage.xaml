@@ -15,20 +15,36 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <RelativePanel HorizontalAlignment="Stretch">
+            <RelativePanel.ChildrenTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </RelativePanel.ChildrenTransitions>
             <TextBlock
-                x:Name="OutpuText"
+                x:Name="OutputText"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
                 Text="输出文件类型" />
             <ComboBox
                 x:Name="OutputComboBox"
                 Margin="5,0,0,0"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
-                RelativePanel.RightOf="OutpuText">
+                RelativePanel.RightOf="OutputText">
                 <ComboBoxItem Content="MP4" />
                 <ComboBoxItem Content="MKV" />
                 <ComboBoxItem Content="AVI" />
                 <ComboBoxItem Content="MP4" />
             </ComboBox>
+            <TextBlock
+                x:Name="SelectConfigText"
+                Margin="5,0,0,0"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.RightOf="OutputComboBox"
+                Text="选择预设输出配置" />
+            <ComboBox
+                x:Name="SelectConfigComboBox"
+                Margin="5,0,0,0"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                RelativePanel.RightOf="SelectConfigText" />
             <HyperlinkButton
                 Content="导出配置文件"
                 RelativePanel.AlignRightWithPanel="True"
@@ -43,16 +59,32 @@
             <Grid
                 Grid.Column="1"
                 Margin="7,0,0,0"
-                Padding="5"
-                Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                BorderThickness="1"
-                CornerRadius="5">
-                <lab:Segmented VerticalAlignment="Top" Style="{ThemeResource PivotSegmentedStyle}">
-                    <lab:SegmentedItem Content="视频" />
-                    <lab:SegmentedItem Content="音频" />
-                    <lab:SegmentedItem Content="字幕" />
-                </lab:Segmented>
+                Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Border
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="5">
+                    <lab:Segmented VerticalAlignment="Top" Style="{ThemeResource PivotSegmentedStyle}">
+                        <lab:SegmentedItem Content="视频" />
+                        <lab:SegmentedItem Content="音频" />
+                        <lab:SegmentedItem Content="字幕" />
+                    </lab:Segmented>
+                </Border>
+                <Button
+                    Grid.Row="1"
+                    Margin="0,5,0,0"
+                    Style="{ThemeResource TransparentButtonStyle}"
+                    ToolTipService.ToolTip="添加到任务并输出">
+                    <FontIcon
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="25"
+                        Glyph="&#xE761;" />
+                </Button>
             </Grid>
         </Grid>
     </Grid>

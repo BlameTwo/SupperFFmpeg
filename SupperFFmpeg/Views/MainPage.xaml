@@ -34,7 +34,7 @@
                         </TransitionCollection>
                     </StackPanel.ChildrenTransitions>
                     <uicontrol:ImageEx
-                        Height="25"
+                        Height="18"
                         Margin="5,0,0,0"
                         Source="ms-appx:///Assets/logo.png"
                         Stretch="UniformToFill" />
