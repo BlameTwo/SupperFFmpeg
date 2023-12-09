@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:navigation="using:SupperFFmpeg.Views.Property"
     xmlns:ui="using:SupperFFmpeg.UI"
+    xmlns:uicontrol="using:SupperFFmpeg.UI.Controls"
     mc:Ignorable="d">
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -32,17 +33,16 @@
                             <RepositionThemeTransition />
                         </TransitionCollection>
                     </StackPanel.ChildrenTransitions>
-                    <TextBlock
+                    <uicontrol:ImageEx
+                        Height="25"
                         Margin="5,0,0,0"
-                        VerticalAlignment="Center"
-                        FontWeight="Bold"
-                        Text="SupperFFmpeg" />
+                        Source="ms-appx:///Assets/logo.png"
+                        Stretch="UniformToFill" />
                     <TextBlock
-                        Margin="0,5,0,0"
+                        Margin="10,0,0,0"
                         VerticalAlignment="Center"
                         FontSize="12"
-                        Foreground="{ThemeResource SystemChromeGrayColor}"
-                        Text="   --Version 0.1" />
+                        Text="SupperFFmpeg" />
                 </StackPanel>
             </ui:TitleBar.Title>
             <ui:TitleBar.Header>
