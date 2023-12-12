@@ -8,7 +8,7 @@ namespace SupperFFmpeg.Core.Toolkits;
 public static class CodecToolkit
 {
 
-    public static async Task<string> GetResult(PowerShellProcesser pro)
+    private static async Task<string> GetResult(PowerShellProcesser pro)
     {
         await pro.BuilderStart();
         return pro.Result;
@@ -45,7 +45,7 @@ public static class CodecToolkit
     }
 
     /// <summary>
-    /// 获得支持的编码器
+    /// 获得FFmpeg支持的编码器
     /// </summary>
     /// <param name="type">类型</param>
     /// <returns></returns>
@@ -57,5 +57,26 @@ public static class CodecToolkit
         return FormatOutputCodec(lins,type);
     }
 
-    
+    /// <summary>
+    /// 获得包支持的视频编码器
+    /// </summary>
+    /// <returns></returns>
+    public static List<CodecOutputItem> GetVideoOutput()
+    {
+        List<CodecOutputItem> items = new()
+        {
+            new(){ CodecName = "h264", FileExtention = ".mp4", Name = "MP4",VideoEnable=true, AudioEnable = true, SubtitleEnable = true},
+            new(){ CodecName = "h265", FileExtention = ".mp4", Name = "MP4-H265",VideoEnable=true, AudioEnable = true, SubtitleEnable = true}
+        };
+        return items;
+    }
+
+    public static List<CodecOutputItem> GetAudioOutput()
+    {
+        List<CodecOutputItem> items = new()
+        {
+            new(){ CodecName = "aac", FileExtention = ".mp3", Name = "MP3"},
+        };
+        return items;
+    }
 }

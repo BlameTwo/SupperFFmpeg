@@ -1,23 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using SupperFFmpeg.Contracts.Interfaces;
 using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Core.Toolkits;
-using SupperFFmpeg.ViewModels.ControlViewModels;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace SupperFFmpeg.ViewModels;
 
-public sealed partial class RecodeViewModel : ObservableRecipient
+partial class RecodeViewModel
 {
-    public RecodeViewModel(IFileSelectService fileSelectService,IDataFactory dataFactory)
-    {
-        FileSelectService = fileSelectService;
-        DataFactory = dataFactory;
-    }
-
     public IFileSelectService FileSelectService { get; }
     public IDataFactory DataFactory { get; }
 
@@ -29,6 +20,17 @@ public sealed partial class RecodeViewModel : ObservableRecipient
 
     [ObservableProperty]
     int _RecodeSelect = -1;
+
+
+    [ObservableProperty]
+    string _InputFileName;
+
+    /// <summary>
+    /// 显式支持的编码器
+    /// </summary>
+    [ObservableProperty]
+    List<CodecOutputItem> _CodecVideoListSource;
+
 
     partial void OnRecodeSelectChanged(int value)
     {
@@ -43,20 +45,9 @@ public sealed partial class RecodeViewModel : ObservableRecipient
         }
     }
 
-    [ObservableProperty]
-    string _InputFileName;
 
     async partial void OnInputFileNameChanged(string value)
     {
         this.FFmpegSession = await FileStreamToolkit.GetFileInfo(value);
-    }
-
-    [RelayCommand]
-    async Task OpenFileAsync()
-    {
-        var fileStorage = await FileSelectService.OpenFileAsync(
-            new List<string>() { ".mp4", ".mkv" }
-        );
-        this.InputFileName = fileStorage.Path;
     }
 }
