@@ -1,6 +1,8 @@
 ﻿using SupperFFmpeg.Contracts.Interfaces;
 using SupperFFmpeg.Contracts.Services;
+using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Models;
+using SupperFFmpeg.ViewModels.ControlViewModels;
 using System.Collections.Generic;
 
 namespace SupperFFmpeg.Contracts;
@@ -46,5 +48,19 @@ public sealed class DataFactory : IDataFactory
                 };
         }
         return null;
+    }
+
+    public IRecodeControlViewModel CreateVideoRecode(FFmpegSession fFmpegSession)
+    {
+        var vm = AppLifeRegister.GetService<RecodeVideoViewModel>();
+        vm.SetControlData(fFmpegSession);
+        return vm;
+    }
+
+    public IRecodeControlViewModel CreateAudioViewModel(FFmpegSession fFmpegSession)
+    {
+        var vm = AppLifeRegister.GetService<RecodeAudioViewModel>();
+        vm.SetControlData(fFmpegSession);
+        return vm;
     }
 }

@@ -19,7 +19,7 @@
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/DropFileCard.xaml" />
                 <ResourceDictionary Source="ms-appx:///Views/UISelectors/FFmpegStreamDataTemplate.xaml" />
                 <ResourceDictionary Source="ms-appx:///Views/UISelectors/FFmpegStreamControlDataTemplate.xaml" />
-
+                <ResourceDictionary Source="ms-appx:///Views/UISelectors/RecodeControlDataTemplate.xaml" />
                 <ResourceDictionary Source="ms-appx:///CommunityToolkit.WinUI.Controls.Segmented/Segmented/Segmented.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
@@ -33,6 +33,10 @@
                 SubTitleControlTempate="{StaticResource StreamSubtitleControlDT}"
                 VideoControlTempate="{StaticResource StreamVideoControlDT}"
                 VideoTempalte="{StaticResource VideoStream}" />
+            <selector:RecodecControlDataTemplate
+                x:Key="RecodecControlDataTemplate"
+                AudioTemplate="{StaticResource RecodeAudioControl}"
+                VideoTemplate="{StaticResource RecodeVideoControl}" />
         </ResourceDictionary>
     </app:FFmpegApplication.Resources>
 </app:FFmpegApplication>

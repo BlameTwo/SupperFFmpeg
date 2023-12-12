@@ -1,4 +1,5 @@
 ﻿using SupperFFmpeg.Contracts.Interfaces;
+using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Models;
 using System.Collections.Generic;
 
@@ -13,5 +14,9 @@ public interface IDataFactory
         where T:IDataControl<ControlValue>;
 
     public List<DecomposeActionItem> CreateTool(ViewModels.ItemViewModels.FFmpegStreamItemViewModel value);
-    
+
+
+    public IRecodeControlViewModel CreateVideoRecode(FFmpegSession fFmpegSession);
+
+    public IRecodeControlViewModel CreateAudioViewModel(FFmpegSession fFmpegSession);
 }

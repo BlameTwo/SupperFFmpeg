@@ -17,7 +17,6 @@
     <!--<WindowsPackageType>None</WindowsPackageType>-->
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Views\DecomponseControl\FileStreamSession.xaml" />
     <None Remove="Views\DecomposePage.xaml" />
     <None Remove="Views\MainPage.xaml" />
     <None Remove="Views\RecodePage.xaml" />
@@ -91,11 +90,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Views\UISelectors\FFmpegStreamControlDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Views\DecomponseControl\FileStreamSession.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

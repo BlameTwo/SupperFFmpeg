@@ -25,6 +25,7 @@ public static class AppLifeRegister
             service.AddTransient<IPageService, PageService>();
             service.AddSingleton<IWindowManagerService, WindowManagerService>();
             service.AddSingleton<IDataFactory, DataFactory>();
+            service.AddSingleton<IFileSelectService, FileSelectService>();
             service.AddTransient<MainPage>();
             service.AddTransient<MainViewModel>(); 
             service.AddTransient<DecomposePage>();
@@ -40,6 +41,8 @@ public static class AppLifeRegister
 
             #region ControlViewModel
             service.AddTransient<FileStreamSessionViewModel>();
+            service.AddTransient<RecodeVideoViewModel>();
+            service.AddTransient<RecodeAudioViewModel>();
             #endregion
         }).Build();
         await Host.StartAsync();

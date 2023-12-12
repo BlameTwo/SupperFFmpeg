@@ -46,46 +46,117 @@
                 RelativePanel.AlignVerticalCenterWithPanel="True"
                 RelativePanel.RightOf="SelectConfigText" />
             <HyperlinkButton
-                Content="导出配置文件"
+                x:Name="OutputConfig"
+                Margin="0,0,40,0"
                 RelativePanel.AlignRightWithPanel="True"
-                RelativePanel.AlignVerticalCenterWithPanel="True" />
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                ToolTipService.ToolTip="导出配置文件">
+                <FontIcon
+                    FontFamily="Segoe Fluent Icons"
+                    FontSize="13"
+                    Glyph="&#xE8AD;" />
+            </HyperlinkButton>
+            <HyperlinkButton
+                x:Name="InputConfig"
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.AlignVerticalCenterWithPanel="True"
+                ToolTipService.ToolTip="导入配置文件">
+                <FontIcon
+                    FontFamily="Segoe Fluent Icons"
+                    FontSize="13"
+                    Glyph="&#xE74B;" />
+            </HyperlinkButton>
         </RelativePanel>
         <Grid Grid.Row="1" Margin="0,15,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*" />
-                <ColumnDefinition Width="6*" />
-            </Grid.ColumnDefinitions>
-            <ui:DropFileCard />
-            <Grid
-                Grid.Column="1"
-                Margin="7,0,0,0"
-                Padding="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid.ChildrenTransitions>
+                <TransitionCollection>
+                    <RepositionThemeTransition />
+                </TransitionCollection>
+            </Grid.ChildrenTransitions>
+            <Grid>
+                <Grid.ChildrenTransitions>
+                    <TransitionCollection>
+                        <RepositionThemeTransition />
+                    </TransitionCollection>
+                </Grid.ChildrenTransitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <Border
-                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-                    BorderThickness="1"
-                    CornerRadius="5">
-                    <lab:Segmented VerticalAlignment="Top" Style="{ThemeResource PivotSegmentedStyle}">
-                        <lab:SegmentedItem Content="视频" />
-                        <lab:SegmentedItem Content="音频" />
-                        <lab:SegmentedItem Content="字幕" />
-                    </lab:Segmented>
-                </Border>
-                <Button
+                <TextBox
+                    VerticalAlignment="Center"
+                    IsReadOnly="True"
+                    Text="{x:Bind ViewModel.InputFileName, Mode=OneWay}" />
+                <TextBox
                     Grid.Row="1"
                     Margin="0,5,0,0"
+                    VerticalAlignment="Center" />
+                <Button
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="3,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.OpenFileCommand, Mode=OneWay}"
                     Style="{ThemeResource TransparentButtonStyle}"
-                    ToolTipService.ToolTip="添加到任务并输出">
+                    ToolTipService.ToolTip="打开媒体">
                     <FontIcon
                         FontFamily="Segoe Fluent Icons"
-                        FontSize="25"
-                        Glyph="&#xE761;" />
+                        FontSize="15"
+                        Glyph="&#xE8E5;" />
+                </Button>
+                <Button
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="3,5,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Style="{ThemeResource TransparentButtonStyle}"
+                    ToolTipService.ToolTip="输出位置">
+                    <FontIcon
+                        FontFamily="Segoe Fluent Icons"
+                        FontSize="15"
+                        Glyph="&#xE78C;" />
                 </Button>
             </Grid>
+            <Grid Grid.Row="1" Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <lab:Segmented
+                    x:Name="SelectControl"
+                    VerticalAlignment="Top"
+                    SelectedIndex="{x:Bind ViewModel.RecodeSelect, Mode=TwoWay}"
+                    Style="{ThemeResource PivotSegmentedStyle}">
+                    <lab:SegmentedItem Content="视频" />
+                    <lab:SegmentedItem Content="音频" />
+                    <lab:SegmentedItem Content="字幕" />
+                </lab:Segmented>
+                <ContentControl
+                    Grid.Row="1"
+                    Content="{x:Bind ViewModel.RecodeControlViewModel, Mode=OneWay}"
+                    ContentTemplateSelector="{ThemeResource RecodecControlDataTemplate}" />
+            </Grid>
+            <Button
+                Grid.Row="2"
+                Margin="0,5,0,0"
+                Style="{ThemeResource TransparentButtonStyle}"
+                ToolTipService.ToolTip="添加到任务并输出">
+                <FontIcon
+                    FontFamily="Segoe Fluent Icons"
+                    FontSize="25"
+                    Glyph="&#xE761;" />
+            </Button>
         </Grid>
     </Grid>
 </Page>
