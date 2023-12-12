@@ -31,6 +31,32 @@ public static class FileStreamToolkit
         return JsonSerializer.Deserialize<FFmpegSession>(jsonstr)!;
     }
 
+    public static bool IsVideoExists(ref int index,List<IFFmpegStream> stream)
+    {
+        foreach (var item in stream)
+        {
+            if (item.CodecType == "video")
+            {
+                index = item.Index;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static bool IsAudioExists(ref int index, List<IFFmpegStream> stream)
+    {
+        foreach (var item in stream)
+        {
+            if (item.CodecType == "audio")
+            {
+                index = item.Index;
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static string GetOutputFileName(IFFmpegStream stream)
     {

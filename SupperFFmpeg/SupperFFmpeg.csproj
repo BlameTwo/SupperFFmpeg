@@ -19,6 +19,7 @@
   <ItemGroup>
     <None Remove="Views\DecomposePage.xaml" />
     <None Remove="Views\MainPage.xaml" />
+    <None Remove="Views\MainPages\SinglePipePlayerPage.xaml" />
     <None Remove="Views\RecodePage.xaml" />
     <None Remove="Views\UISelectors\FFmpegStreamControlDataTemplate.xaml" />
     <None Remove="Views\UISelectors\FFmpegStreamDataTemplate.xaml" />
@@ -94,7 +95,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ViewModels\Extentions\" />
+    <Page Update="Views\MainPages\SinglePipePlayerPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <!-- 

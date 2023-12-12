@@ -146,6 +146,10 @@
                 </lab:Segmented>
                 <ContentControl
                     Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch"
+                    VerticalContentAlignment="Stretch"
                     Content="{x:Bind ViewModel.RecodeControlViewModel, Mode=OneWay}"
                     ContentTemplateSelector="{ThemeResource RecodecControlDataTemplate}" />
             </Grid>

@@ -12,6 +12,7 @@ partial class RecodeViewModel
         var fileStorage = await FileSelectService.OpenFileAsync(
             new List<string>() { ".mp4", ".mkv" }
         );
+        if (fileStorage == null) return;
         this.InputFileName = fileStorage.Path;
     }
 }

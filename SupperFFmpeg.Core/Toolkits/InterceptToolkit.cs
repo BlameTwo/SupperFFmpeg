@@ -33,8 +33,22 @@ public static class InterceptToolkit
         });
     }
 
+    public static async Task<Stream> GetSnapshotStream(FFmpegSession session, TimeSpan time, int Index, Models.Size size)
+    {
+        return await Task.Run(async () =>
+        {
+            PipeProcesser pro = new PipeProcesser(Models.Enums.FFmpegFile.FFmpeg);
+            MemoryStream ms = new();
+            if (size.Height == 0)
+            {
+                size = new Models.Size(h: 720, w: 1280);
+            }
+            pro.BuilderSnapshot(session, time, Index, size);
+            await pro.BuilderStart();
+            return pro.Result;
+        });
+    }
 
-    
 
 
 }

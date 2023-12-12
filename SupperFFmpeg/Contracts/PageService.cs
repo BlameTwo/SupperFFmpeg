@@ -1,7 +1,9 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.ViewModels;
+using SupperFFmpeg.ViewModels.MainViewModels;
 using SupperFFmpeg.Views;
+using SupperFFmpeg.Views.MainPages;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +22,7 @@ public sealed class PageService : IPageService
         RegisterObject<DecomposePage, DecomposeViewModel>();
         RegisterObject<WorkSpacePage, WorkSpaceViewModel>();
         RegisterObject<RecodePage, RecodeViewModel>();
+        RegisterObject<SinglePipePlayerPage, SinglePipePlayerViewModel>();
     }
 
 

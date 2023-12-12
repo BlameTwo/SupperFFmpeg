@@ -46,12 +46,10 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
                 this.FFmpegStreams.Add(DataFactory.SetItemData<FFmpegStreamItemViewModel, IFFmpegStream>(item));
             }
             var ivalue = Convert.ToDouble(this.FFmpegSession.Format.Duration);
-            var bitmap = await InterceptToolkit.GetSnapshot(FFmpegSession, new(0, 0, Random.Shared.Next(0, (int)ivalue)), 0, new(h: 1080, w: 1980));
+            var stream = await InterceptToolkit.GetSnapshotStream(FFmpegSession, new(0, 0, Random.Shared.Next(0, (int)ivalue)), 0, new(h: 1080, w: 1980));
             BitmapImage bitmapImage = new BitmapImage();
-            MemoryStream ms = new();
-            bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-            ms.Position = 0;
-            bitmapImage.SetSource(ms.AsRandomAccessStream());
+            stream.Position = 0;
+            bitmapImage.SetSource(stream.AsRandomAccessStream());
             this.ImageSnapshot = bitmapImage;
         }
     }

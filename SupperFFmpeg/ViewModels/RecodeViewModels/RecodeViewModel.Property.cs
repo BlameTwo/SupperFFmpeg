@@ -4,6 +4,8 @@ using SupperFFmpeg.Contracts.Services;
 using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Core.Toolkits;
 using System.Collections.Generic;
+using System.Linq;
+using System.Management.Automation;
 
 namespace SupperFFmpeg.ViewModels;
 
@@ -31,23 +33,15 @@ partial class RecodeViewModel
     [ObservableProperty]
     List<CodecOutputItem> _CodecVideoListSource;
 
+    /// <summary>
+    /// 是否存在视频流
+    /// </summary>
+    [ObservableProperty]
+    bool _IsVideoExists;
 
-    partial void OnRecodeSelectChanged(int value)
-    {
-        switch (value)
-        {
-            case 0:
-                this.RecodeControlViewModel = DataFactory.CreateVideoRecode(this.FFmpegSession);
-                break;
-            case 1:
-                this.RecodeControlViewModel = DataFactory.CreateAudioViewModel(this.FFmpegSession);
-                break;
-        }
-    }
-
-
-    async partial void OnInputFileNameChanged(string value)
-    {
-        this.FFmpegSession = await FileStreamToolkit.GetFileInfo(value);
-    }
+    /// <summary>
+    /// 是否存在音频流
+    /// </summary>
+    [ObservableProperty]
+    bool _IsAudioExists;                                           
 }
