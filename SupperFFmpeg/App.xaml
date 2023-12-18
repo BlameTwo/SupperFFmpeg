@@ -15,6 +15,7 @@
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/TitleBar.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/Button.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/ListView.xaml" />
+                <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/ProgressButton.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/ImageEx.xaml" />
                 <ResourceDictionary Source="ms-appx:///SupperFFmpeg.UI/Styles/DropFileCard.xaml" />
                 <ResourceDictionary Source="ms-appx:///Views/UISelectors/FFmpegStreamDataTemplate.xaml" />

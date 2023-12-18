@@ -9,6 +9,7 @@
   <ItemGroup>
     <None Remove="Styles\ImageEx.xaml" />
     <None Remove="Styles\ListView.xaml" />
+    <None Remove="Styles\ProgressButton.xaml" />
     <None Remove="Styles\TitleBar.xaml" />
   </ItemGroup>
 
@@ -16,6 +17,13 @@
       <PackageReference Include="CommunityToolkit.WinUI.Extensions" Version="8.0.230907" />
       <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.4.231115000" />
 	  <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.756" />
+	  <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\ProgressButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
