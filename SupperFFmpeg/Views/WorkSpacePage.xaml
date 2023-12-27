@@ -29,12 +29,13 @@
             CornerRadius="5">
             <ui:ProgressButton
                 x:Name="ProgressButton"
+                Margin="200"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
+                BorderThickness="5"
                 Click="ProgressButton_Click"
                 Content="Download"
-                SizeChanged="ProgressButton_SizeChanged"
-                State="Ready"
+                FontSize="100"
                 StateChanged="ProgressButton_StateChanged"
                 StateChanging="ProgressButton_StateChanging" />
         </Grid>

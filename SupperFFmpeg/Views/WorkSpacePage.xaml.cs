@@ -57,12 +57,8 @@ namespace SupperFFmpeg.Views
 
         }
 
-        private void ProgressButton_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
 
-        }
-
-        private async void ProgressButton_StateChanged(object sender, EventArgs e)
+        private void ProgressButton_StateChanged(object sender, EventArgs e)
         {
             var progressButton = sender as ProgressButton;
             switch (progressButton.State)
