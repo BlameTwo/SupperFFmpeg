@@ -23,6 +23,7 @@ public sealed partial class RecodeViewModel : ObservableRecipient
                 break;
             case 1:
                 this.RecodeControlViewModel = DataFactory.CreateAudioViewModel(this.FFmpegSession);
+                
                 break;
         }
     }

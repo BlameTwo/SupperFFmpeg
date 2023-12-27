@@ -24,4 +24,5 @@ public class CodecOutputItem
     public bool SubtitleEnable { get; set; }
 
     public string Name { get; set; }
+
 }

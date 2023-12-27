@@ -27,11 +27,17 @@ partial class RecodeViewModel
     [ObservableProperty]
     string _InputFileName;
 
+    [ObservableProperty]
+    string _OutputFileName;
+
     /// <summary>
     /// 显式支持的编码器
     /// </summary>
     [ObservableProperty]
     List<CodecOutputItem> _CodecVideoListSource;
+
+    [ObservableProperty]
+    CodecOutputItem _CodecVideoItem;
 
     /// <summary>
     /// 是否存在视频流

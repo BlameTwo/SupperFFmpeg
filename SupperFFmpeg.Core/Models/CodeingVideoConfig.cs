@@ -13,6 +13,8 @@ public class CodeingVideoConfig
 
     public bool IsCustomVideoIndex { get; set; }
 
+    public bool IsCustomAudioIndex { get; set; }
+
     /// <summary>
     /// 是否使用头个视频流和音频流
     /// </summary>

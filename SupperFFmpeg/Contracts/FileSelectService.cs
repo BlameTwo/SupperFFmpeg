@@ -15,6 +15,17 @@ public sealed class FileSelectService : IFileSelectService
 
     public IWindowManagerService WindowManagerService { get; }
 
+    public async Task<StorageFile> GetSaveFileAsync(IList<string> filter)
+    {
+        var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+        WinRT.Interop.InitializeWithWindow.Initialize(savePicker, WinRT.Interop.WindowNative.GetWindowHandle(WindowManagerService.Window));
+        savePicker.FileTypeChoices.Add("Save File Extention", filter);
+        var result = await savePicker.PickSaveFileAsync();
+        return result;
+    }
+
+
+
     public async Task<StorageFile> OpenFileAsync(IList<string> filter)
     {
         var openPicker = new Windows.Storage.Pickers.FileOpenPicker();
@@ -28,4 +39,5 @@ public sealed class FileSelectService : IFileSelectService
         var result =  await openPicker.PickSingleFileAsync();
         return result;
     }
+
 }

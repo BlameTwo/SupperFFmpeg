@@ -15,4 +15,15 @@ partial class RecodeViewModel
         if (fileStorage == null) return;
         this.InputFileName = fileStorage.Path;
     }
+
+    [RelayCommand]
+    async Task SelectSaveAsync()
+    {
+        var saveExtention = this.CodecVideoItem.FileExtention;
+        var fileStorage = await FileSelectService.GetSaveFileAsync(
+            new List<string>() { saveExtention }
+        );
+        if (fileStorage == null) return;
+        this.OutputFileName = fileStorage.Path;
+    }
 }

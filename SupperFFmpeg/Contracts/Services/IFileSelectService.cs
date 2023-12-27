@@ -8,4 +8,7 @@ namespace SupperFFmpeg.Contracts.Services;
 public interface IFileSelectService
 {
     public Task<StorageFile> OpenFileAsync(IList<string> filter);
+
+    public Task<StorageFile> GetSaveFileAsync(IList<string> filter);
+
 }

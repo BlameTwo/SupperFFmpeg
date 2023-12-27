@@ -9,6 +9,7 @@ public sealed class H264H265Config: CodeingVideoConfig
     private string outputPath;
     private string inputPath;
     private Mp4VideoOutputType outputType;
+    private int audioIndexStream;
 
     /// <summary>
     /// 帧率设置，需要配合IsAutoFrame使用
@@ -58,6 +59,15 @@ public sealed class H264H265Config: CodeingVideoConfig
 			if(IsCustomVideoIndex) this.videoIndexStream = value;
 		}
 
+	}
+
+	public int AudioIndexStream
+	{
+		get=>audioIndexStream;
+		set
+		{
+			if(IsCustomAudioIndex)this.audioIndexStream= value;
+		}
 	}
 
     public string OutputPath { get => outputPath; set => outputPath = value; }

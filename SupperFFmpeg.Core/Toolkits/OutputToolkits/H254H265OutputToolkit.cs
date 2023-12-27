@@ -21,16 +21,21 @@ public class H254H265OutputToolkit : OutputToolkit
                 //如果是复制流
                 arguments.Add("-c:v copy");
             }
+            if (hconfig.IsCopyAudioStream)
+                arguments.Add("-c:a copy");
             if (!hconfig.IsCustomVideoIndex)
             {
-                //表示第0个输入的v（视频流）的第0个流，如果为空则跳过
                 arguments.Add("-map 0:v:0?");
             }
             else
             {
-                //表示自定义的第index的流
                 arguments.Add($"-map 0:v:{hconfig.VideoIndexStream}");
             }
+            if (!hconfig.IsCustomAudioIndex)
+            {
+                arguments.Add("-map 0:a:0?");
+            }else
+                arguments.Add($"-map 0:a:{hconfig.AudioIndexStream}");
             arguments.Add("-f mp4");
             arguments.Add($"\"{hconfig.OutputPath}\"");
         }

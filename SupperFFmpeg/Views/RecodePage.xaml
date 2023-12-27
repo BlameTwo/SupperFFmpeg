@@ -29,24 +29,25 @@
                 Margin="5,0,0,0"
                 ItemsSource="{x:Bind ViewModel.CodecVideoListSource}"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
-                RelativePanel.RightOf="OutputText">
+                RelativePanel.RightOf="OutputText"
+                SelectedItem="{x:Bind ViewModel.CodecVideoItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Name, Mode=OneWay}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBlock
+            <!--<TextBlock
                 x:Name="SelectConfigText"
                 Margin="5,0,0,0"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
                 RelativePanel.RightOf="OutputComboBox"
-                Text="编码器" />
-            <ComboBox
+                Text="编码器" />-->
+            <!--<ComboBox
                 x:Name="SelectConfigComboBox"
                 Margin="5,0,0,0"
                 RelativePanel.AlignVerticalCenterWithPanel="True"
-                RelativePanel.RightOf="SelectConfigText" />
+                RelativePanel.RightOf="SelectConfigText" />-->
             <HyperlinkButton
                 x:Name="OutputConfig"
                 Margin="0,0,40,0"
@@ -101,7 +102,9 @@
                 <TextBox
                     Grid.Row="1"
                     Margin="0,5,0,0"
-                    VerticalAlignment="Center" />
+                    VerticalAlignment="Center"
+                    IsReadOnly="True"
+                    Text="{x:Bind ViewModel.OutputFileName, Mode=OneWay}" />
                 <Button
                     Grid.Row="0"
                     Grid.Column="1"
@@ -122,6 +125,7 @@
                     Margin="3,5,0,0"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.SelectSaveCommand, Mode=OneWay}"
                     Style="{ThemeResource TransparentButtonStyle}"
                     ToolTipService.ToolTip="输出位置">
                     <FontIcon
