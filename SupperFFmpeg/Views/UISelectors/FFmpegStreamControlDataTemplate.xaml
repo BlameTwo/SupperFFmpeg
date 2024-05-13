@@ -66,21 +66,25 @@
             <TextBlock
                 Grid.Row="0"
                 Grid.Column="1"
+                IsTextSelectionEnabled="True"
                 Text="{Binding DataBase.CodecName, Mode=OneWay}" />
             <TextBlock Grid.Row="1" Text="流索引：" />
             <TextBlock
                 Grid.Row="1"
                 Grid.Column="1"
+                IsTextSelectionEnabled="True"
                 Text="{Binding DataBase.Index, Mode=OneWay}" />
             <TextBlock Grid.Row="2" Text="音频通道：" />
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"
+                IsTextSelectionEnabled="True"
                 Text="{Binding DataBase.Channels, Mode=OneWay}" />
             <TextBlock Grid.Row="3" Text="采样率：" />
             <TextBlock
                 Grid.Row="3"
                 Grid.Column="1"
+                IsTextSelectionEnabled="True"
                 Text="{Binding DataBase.SampleRate, Mode=OneWay}" />
         </Grid>
     </DataTemplate>

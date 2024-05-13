@@ -11,10 +11,10 @@ public static class CoreConfig
     {
         Instance = new();
     }
-    public static FFmpegCoreInstalce Instance { get; }
+    public static FFmpegCoreInstance Instance { get; }
 }
 
-public class FFmpegCoreInstalce
+public class FFmpegCoreInstance
 {
     /// <summary>
     /// FFmpeg Folder
@@ -36,9 +36,12 @@ public class FFmpegCoreInstalce
         return $"FFmpeg文件夹位置:{FFMEFolder}";
     }
 
-    public void GetVersion()
+    public async Task<string> GetVersion()
     {
         List<string> list = new() { "version" };
-        var process =  ProcessBuilder.CreateProcess(FFmpegFile.FFmpeg,list).Start();
+        PowerShellProcesser processer = new PowerShellProcesser(FFmpegFile.FFmpeg);
+        processer.Arguments = list;
+        await processer.BuilderStart();
+        return processer.Result;
     }
 }

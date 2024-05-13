@@ -6,9 +6,9 @@ using SupperFFmpeg.Core.Toolkits;
 using SupperFFmpeg.Core.Toolkits.OutputToolkits;
 
 CoreConfig.Instance.FFMEFolder = "C:\\Users\\30140\\Desktop\\bin";
-//var info = await FileStreamToolkit.GetFileInfo("C:\\Users\\30140\\Desktop\\bin\\Auto.mkv");
+var info = await FileStreamToolkit.GetFileInfo("E:\\进击的巨人\\后篇.mp4");
 
-////var resul2 = await InterceptToolkit.GetSnapshot(info,TimeSpan.FromMinutes(5),0,new());
+var resul2 = await InterceptToolkit.GetSnapshot(info,TimeSpan.FromMinutes(5),0,new Size());
 //var result = await CodecToolkit.GetCodecListAsync(SupperFFmpeg.Core.Models.Enums.CodecType.Audio);
 //var image = await InterceptToolkit.GetSnapshot(
 //    info,
@@ -17,15 +17,17 @@ CoreConfig.Instance.FFMEFolder = "C:\\Users\\30140\\Desktop\\bin";
 //    new(h: 1920, w: 1080)
 //);
 //MP4帮助类
-H254H265OutputToolkit toolkit = new();
+var videos = await CodecToolkit.GetCodecListAsync(SupperFFmpeg.Core.Models.Enums.CodecType.Video);
+
+StreamOutputToolkit toolkit = new();
 //设置H264和H265的编码器配置
-var arg = new H264H265Config()
+var arg = new H265Config()
 {
     IsAutoBit = true,
     IsAutoFrame = true,
     IsAutoSpeed = true,
-    IsCopyAudioStream = true,
-    IsCopyVideoStream = true,
+    IsCopyAudioStream = false,
+    IsCopyVideoStream = false,
     IsCustomVideoIndex = true,
     IsCustomAudioIndex = true,
     IsOutputFirstStream = false,

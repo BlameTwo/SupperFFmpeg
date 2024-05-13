@@ -19,25 +19,5 @@
             BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
             BorderThickness="1"
             CornerRadius="5" />
-        <Grid
-            Grid.Row="1"
-            Margin="0,5,0,0"
-            Padding="5"
-            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
-            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
-            BorderThickness="1"
-            CornerRadius="5">
-            <ui:ProgressButton
-                x:Name="ProgressButton"
-                Margin="200"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
-                BorderThickness="5"
-                Click="ProgressButton_Click"
-                Content="Download"
-                FontSize="100"
-                StateChanged="ProgressButton_StateChanged"
-                StateChanging="ProgressButton_StateChanging" />
-        </Grid>
     </Grid>
 </Page>

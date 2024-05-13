@@ -1,6 +1,6 @@
 ﻿namespace SupperFFmpeg.Core.Models.OutputToolkits;
 
-public sealed class H264H265Config: CodeingVideoConfig
+public sealed class H265Config: CodeingVideoConfig
 {
 	private double frame;
     private double videobit;
@@ -10,6 +10,11 @@ public sealed class H264H265Config: CodeingVideoConfig
     private string inputPath;
     private Mp4VideoOutputType outputType;
     private int audioIndexStream;
+
+    public H265Config()
+    {
+		SetCodec("libx265","aac");
+    }
 
     /// <summary>
     /// 帧率设置，需要配合IsAutoFrame使用
@@ -61,12 +66,15 @@ public sealed class H264H265Config: CodeingVideoConfig
 
 	}
 
+	/// <summary>
+	/// 自定义音频流Index
+	/// </summary>
 	public int AudioIndexStream
 	{
 		get=>audioIndexStream;
 		set
 		{
-			if(IsCustomAudioIndex)this.audioIndexStream= value;
+			if(IsCustomAudioIndex) this.audioIndexStream = value;
 		}
 	}
 
