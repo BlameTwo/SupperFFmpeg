@@ -2,14 +2,19 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:ui="using:SupperFFmpeg.UI.Controls">
     <DataTemplate x:Key="RecodeVideoControl">
-        <Grid>
+        <Grid Margin="25">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="250" />
+                <ColumnDefinition MaxWidth="500" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ui:ImageEx />
+            <ui:ImageEx
+                CornerRadius="5"
+                Source="{Binding Cover, Mode=OneWay}"
+                Stretch="UniformToFill" />
         </Grid>
     </DataTemplate>
     <DataTemplate x:Key="RecodeAudioControl">

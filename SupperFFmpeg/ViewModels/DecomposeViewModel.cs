@@ -63,9 +63,9 @@ public sealed partial class DecomposeViewModel(IWindowManagerService windowManag
     [ObservableProperty]
     List<DecomposeActionItem> _Tools;
 
-    partial void OnSelectItemChanged(FFmpegStreamItemViewModel value)
+    async partial void OnSelectItemChanged(FFmpegStreamItemViewModel value)
     {
-        this.FileStreamViewModel = DataFactory.SetControlData<FileStreamSessionViewModel, IFFmpegStream>(value.DataBase);
+        this.FileStreamViewModel =await DataFactory.SetControlData<FileStreamSessionViewModel, IFFmpegStream>(value.DataBase);
         this.Tools = DataFactory.CreateTool(value);
     }
 }

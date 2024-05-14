@@ -1,4 +1,4 @@
-﻿
+﻿namespace SupperFFmpeg.Core.Arguments;
 
 public abstract class Processer<T>
 {
@@ -11,10 +11,9 @@ public abstract class Processer<T>
         Arguments = new();
         FFmpegFile = fFmpegFile;
     }
+
     public bool IsRuning { get; internal set; }
     public abstract Task BuilderStart();
-
     public FFmpegFile FFmpegFile { get; }
-
 }
 

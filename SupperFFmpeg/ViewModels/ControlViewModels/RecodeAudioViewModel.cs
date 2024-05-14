@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using SupperFFmpeg.Contracts.Interfaces;
 using SupperFFmpeg.Core.Models;
+using System.Threading.Tasks;
 
 namespace SupperFFmpeg.ViewModels.ControlViewModels;
 
@@ -12,8 +13,10 @@ public sealed partial class RecodeAudioViewModel
     [ObservableProperty]
     public FFmpegSession _DataBase;
 
-    public void SetControlData(FFmpegSession value)
+
+    public async Task SetControlDataAsync(FFmpegSession value)
     {
         this.DataBase = value;
+        await Task.CompletedTask;
     }
 }

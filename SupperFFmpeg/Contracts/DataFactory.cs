@@ -4,16 +4,17 @@ using SupperFFmpeg.Core.Models;
 using SupperFFmpeg.Models;
 using SupperFFmpeg.ViewModels.ControlViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SupperFFmpeg.Contracts;
 
 public sealed class DataFactory : IDataFactory
 {
-    public T SetControlData<T, ControlValue>(ControlValue data)
+    public async Task<T> SetControlData<T, ControlValue>(ControlValue data)
         where T : IDataControl<ControlValue>
     {
         var tvalue = AppLifeRegister.GetService<T>();
-        tvalue.SetControlData(data);
+        await tvalue.SetControlDataAsync(data);
         return tvalue;
     }
 
@@ -50,17 +51,17 @@ public sealed class DataFactory : IDataFactory
         return null;
     }
 
-    public IRecodeControlViewModel CreateVideoRecode(FFmpegSession fFmpegSession)
+    public async Task< IRecodeControlViewModel> CreateVideoRecode(FFmpegSession fFmpegSession)
     {
         var vm = AppLifeRegister.GetService<RecodeVideoViewModel>();
-        vm.SetControlData(fFmpegSession);
+        await vm.SetControlDataAsync(fFmpegSession);
         return vm;
     }
 
-    public IRecodeControlViewModel CreateAudioViewModel(FFmpegSession fFmpegSession)
+    public async Task<IRecodeControlViewModel> CreateAudioViewModel(FFmpegSession fFmpegSession)
     {
         var vm = AppLifeRegister.GetService<RecodeAudioViewModel>();
-        vm.SetControlData(fFmpegSession);
+        await vm.SetControlDataAsync(fFmpegSession);
         return vm;
     }
 }

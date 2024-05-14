@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using SupperFFmpeg.Core.Toolkits;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace SupperFFmpeg.ViewModels;
@@ -14,6 +16,7 @@ partial class RecodeViewModel
         );
         if (fileStorage == null) return;
         this.InputFileName = fileStorage.Path;
+        var stream = await FileStreamToolkit.GetFileInfo( this.InputFileName );
     }
 
     [RelayCommand]

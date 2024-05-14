@@ -14,16 +14,15 @@ public sealed partial class RecodeViewModel : ObservableRecipient
         this.CodecVideoListSource = CodecToolkit.GetVideoOutput();
     }
 
-    partial void OnRecodeSelectChanged(int value)
+    async partial void OnRecodeSelectChanged(int value)
     {
         switch (value)
         {
             case 0:
-                this.RecodeControlViewModel = DataFactory.CreateVideoRecode(this.FFmpegSession);
+                this.RecodeControlViewModel = await DataFactory.CreateVideoRecode(this.FFmpegSession);
                 break;
             case 1:
-                this.RecodeControlViewModel = DataFactory.CreateAudioViewModel(this.FFmpegSession);
-                
+                this.RecodeControlViewModel = await DataFactory.CreateAudioViewModel(this.FFmpegSession);
                 break;
         }
     }

@@ -10,5 +10,5 @@ public interface IDataControl<T>
 {
     public T DataBase { get; set; }
 
-    public void SetControlData(T value);
+    public Task SetControlDataAsync(T value);
 }
